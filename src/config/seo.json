@@ -1,0 +1,16 @@
+{
+  "title": "Crecimiento y desarrollo personal",
+  "titleTemplate": "Virginia Otero | %s",
+  "description": "Si haces lo que siempre has hecho, tendrás lo que siempre has tenido",
+  "openGraph": {
+    "type": "website",
+    "locale": "en_IE",
+    "url": "",
+    "site_name": "Virginia Otero"
+  },
+  "twitter": {
+    "handle": "@laconsultadevirginia",
+    "site": "@laconsultadevirginia",
+    "cardType": "summary"
+  }
+}
