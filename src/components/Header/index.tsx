@@ -1,18 +1,18 @@
-import NextLink from 'next/link';
 import type { FC } from 'react';
 
-import { Container, Link, Logo, LogoContainer } from './styles';
+import { Container, Link, Logo, LogoContainer, Wrapper } from './styles';
 import type Props from './types';
 
 const Header: FC<Props> = ({ className }) => (
   <Container className={className}>
-    <LogoContainer>
-      <NextLink passHref href="/">
-        <Link>
+    <Wrapper>
+      <LogoContainer>
+        <Link href="/">
           <Logo />
         </Link>
-      </NextLink>
-    </LogoContainer>
+      </LogoContainer>
+      <Link href="/blog">Blog</Link>
+    </Wrapper>
   </Container>
 );
 

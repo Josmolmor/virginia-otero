@@ -49,6 +49,10 @@ export default class AppDocument extends Document {
           rel="stylesheet"
         />
         <link
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
+          rel="stylesheet"
+        />
+        <link
           rel="apple-touch-icon"
           sizes="57x57"
           href="/apple-icon-57x57.png"

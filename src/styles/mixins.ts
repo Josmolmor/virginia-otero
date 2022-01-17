@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { commonOverlineCss } from '$/components/Typography';
 
@@ -19,4 +19,11 @@ export const Anchor = css`
     background: none;
     text-decoration: underline;
   }
+`;
+
+export const Wrapper = styled.div`
+  padding: 0 2.5rem;
+  margin: auto;
+  max-width: 1440px;
+  width: 100%;
 `;

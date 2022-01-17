@@ -1,50 +1,37 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-import { from } from '$/styles/responsive';
+import { LogoIcon } from '$/components/Icons';
+import DefaultLink from '$/components/Link';
+import { Wrapper as DefaultWrapper } from '$/styles/mixins';
 
-import LogoIcon from '../Icons/Logo';
+export const Wrapper = styled(DefaultWrapper)`
+  align-items: center;
+  display: flex;
+`;
 
 export const Container = styled.header`
   align-items: center;
-  background: ${({ theme }) => theme.colors.primary600};
+  background: ${({ theme }) => theme.colors.primary200};
   color: ${({ theme }) => theme.colors.white};
   display: flex;
-  padding: 0.5625rem 1rem;
-
-  ${from.mobile} {
-    padding: 0.75rem 1.5rem;
-  }
+  padding: 0.75rem 0;
 `;
 
-const commonLogoCss = css`
-  color: ${({ theme }) => theme.colors.secondary300};
-  flex-shrink: 0;
-`;
-
-export const Link = styled.a`
+export const Link = styled(DefaultLink)`
   display: inline-block;
 `;
 
 export const Logo = styled(LogoIcon)`
-  ${commonLogoCss};
-  display: none;
-
-  ${from.mobile} {
-    display: block;
-  }
+  color: ${({ theme }) => theme.colors.white};
+  flex-shrink: 0;
+  height: 3rem;
+  width: auto;
 `;
 
 export const LogoContainer = styled.div`
   align-items: center;
   display: flex;
+  flex: 1;
   justify-content: flex-start;
   margin-right: auto;
-
-  ${from.mobile} {
-    margin-right: 1.5rem;
-  }
-
-  ${from.tablet} {
-    flex: 1;
-  }
 `;
