@@ -82,7 +82,7 @@ export const LinksContainer = styled.div`
     }
   }
 
-  ${from.mobile} {
+  ${from.tablet} {
     align-items: center;
     padding: 0;
     box-shadow: none;
