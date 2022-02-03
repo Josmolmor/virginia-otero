@@ -22,7 +22,7 @@ const Header: FC<Props> = ({ className }) => (
       </LogoContainer>
       <LinksContainer>
         <Link href="/blog">Blog</Link>
-        <Link href="/sobre-mi">Sobre mi</Link>
+        <Link href="/sobre-mi">Sobre mí</Link>
         <Link href="/servicios">Servicios</Link>
         <Link href="/reviews">Reseñas</Link>
         <Link href="/contacto">Contacto</Link>

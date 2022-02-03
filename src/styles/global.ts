@@ -33,6 +33,7 @@ const GlobalStyle = createGlobalStyle`
   p,
   span,
   em,
+  label,
   strong,
   a {
     &::-moz-selection {

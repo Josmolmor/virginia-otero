@@ -23,7 +23,8 @@ export const SectionTitle = styled(H1)`
   color: ${({ theme }) => theme.colors.primary200};
   margin: 0 auto 2rem auto;
   text-align: center;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Lobster', serif;
+  font-weight: 100;
   max-width: 50rem;
   font-size: 2rem;
 
@@ -32,10 +33,18 @@ export const SectionTitle = styled(H1)`
   }
 `;
 
-export const SectionDescription = styled(Body)`
-  text-align: center;
+export const SectionDescription = styled(Body)<{
+  $align?: 'left' | 'center' | 'right';
+}>`
+  text-align: left;
   margin: 1rem auto 3rem;
-  max-width: 50rem;
+  max-width: 35rem;
+
+  ${({ $align }) =>
+    $align &&
+    css`
+      text-align: ${$align};
+    `};
 `;
 
 export const Split = styled.div`

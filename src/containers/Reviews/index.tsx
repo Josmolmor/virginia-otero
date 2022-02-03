@@ -1,43 +1,51 @@
 import ContactForm from '$/components/ContactForm';
 import ReviewCard from '$/components/ReviewCard';
 import Spinner from '$/components/Spinner';
-import { SectionDescription, SectionTitle, Split } from '$/styles/mixins';
+import { SectionDescription, Split } from '$/styles/mixins';
+import { from, useMediaQuery } from '$/styles/responsive';
 
 import useConnect from './connect';
-import { Container, Content } from './styles';
+import { Container, Content, Layout, Section, SectionTitle } from './styles';
 
 const Reviews = () => {
   const { documents, loading } = useConnect();
+  const isLaptop = !useMediaQuery(from.laptop);
 
   return (
     <Container>
       <SectionTitle>Reseñas</SectionTitle>
-      <Content>
-        {loading ? (
-          <Spinner />
-        ) : (
-          documents?.map((document, id) => {
-            const { title, name, message } = document.data;
-            return (
-              <ReviewCard
-                key={id}
-                title={String(title)}
-                name={String(name)}
-                message={String(message)}
-              />
-            );
-          })
-        )}
-      </Content>
-      <Split />
-      <SectionDescription>
-        Si quieres compartir cómo viviste tu proceso de crecimiento personal
-        junto a mí, puedes dejar tu reseña para ayudar a otras personas a dar
-        este paso. Para tener en cuenta tu privacidad, no olvides comentarme
-        cómo quieres que aparezca tu nombre. (Iniciales, completo, Inicial y
-        apellido...)
-      </SectionDescription>
-      <ContactForm mode="review" />
+      <Layout>
+        <Section>
+          <SectionDescription $align={isLaptop ? 'center' : 'left'}>
+            Si quieres compartir cómo viviste tu proceso de crecimiento personal
+            junto a mí, puedes dejar tu reseña para ayudar a otras personas a
+            dar este paso. Para tener en cuenta tu privacidad, no olvides
+            comentarme cómo quieres que aparezca tu nombre. (Iniciales,
+            completo, Inicial y apellido...)
+          </SectionDescription>
+          <ContactForm mode="review" />
+        </Section>
+        {isLaptop && <Split />}
+        <Section>
+          <Content>
+            {loading ? (
+              <Spinner />
+            ) : (
+              documents?.map((document, id) => {
+                const { title, name, message } = document.data;
+                return (
+                  <ReviewCard
+                    key={id}
+                    title={String(title)}
+                    name={String(name)}
+                    message={String(message)}
+                  />
+                );
+              })
+            )}
+          </Content>
+        </Section>
+      </Layout>
     </Container>
   );
 };

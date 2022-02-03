@@ -13,6 +13,12 @@ export const Content = styled.div`
   padding: 2rem;
 `;
 
+export const VideoContainer = styled.div`
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+`;
+
 export const Text = styled(Body)`
   line-height: 1.25rem;
 `;
