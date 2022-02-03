@@ -9,7 +9,6 @@ import useConnect from './connect';
 import {
   Container,
   Content,
-  Copy,
   Image,
   LoadingContainer,
   Text,
