@@ -86,23 +86,14 @@ const commonWrapperCss = css`
 
 export const HeaderWrapper = styled.div`
   ${commonWrapperCss};
-  padding: 0 1rem 5rem;
+  padding: 0 1rem;
 
   ${from.mobile} {
-    padding: 0 1.5rem 3rem;
+    padding: 0 1.5rem;
   }
 
   ${from.tablet} {
-    ${commonWrapperCss};
-    padding: 0 1rem;
-
-    ${from.mobile} {
-      padding: 0 1.5rem;
-    }
-
-    ${from.tablet} {
-      padding: 0 2.5rem;
-    }
+    padding: 0 2.5rem;
   }
 `;
 
