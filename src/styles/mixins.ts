@@ -36,15 +36,20 @@ export const SectionTitle = styled(H1)`
 export const SectionDescription = styled(Body)<{
   $align?: 'left' | 'center' | 'right';
 }>`
-  text-align: left;
+  text-align: center;
   margin: 1rem auto 3rem;
   max-width: 35rem;
 
   ${({ $align }) =>
-    $align &&
-    css`
-      text-align: ${$align};
-    `};
+    $align
+      ? css`
+          text-align: ${$align};
+        `
+      : css`
+          ${from.mobile} {
+            text-align: left;
+          }
+        `};
 `;
 
 export const Split = styled.div`
