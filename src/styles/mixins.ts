@@ -21,7 +21,7 @@ export const fancyAnchor = css`
 
 export const SectionTitle = styled(H1)`
   color: ${({ theme }) => theme.colors.primary200};
-  margin: 0 auto 2rem auto;
+  margin: 1rem auto 2rem auto;
   text-align: center;
   font-family: 'Lobster', serif;
   font-weight: 100;
