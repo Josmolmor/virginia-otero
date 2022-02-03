@@ -20,6 +20,15 @@ export const LogoLink = styled(DefaultLink)`
   display: inline-block;
 `;
 
+export const IgLink = styled(DefaultLink)`
+  display: block;
+  transition: color 0.25s ease;
+
+  :hover {
+    color: ${({ theme }) => theme.colors.primary200};
+  }
+`;
+
 export const Link = styled(DefaultLink)`
   display: inline-block;
   ${fancyAnchor};

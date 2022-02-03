@@ -2,6 +2,7 @@ import type { FC } from 'react';
 
 import {
   Container,
+  IgLink,
   Link,
   LinksContainer,
   Logo,
@@ -25,6 +26,9 @@ const Header: FC<Props> = ({ className }) => (
         <Link href="/servicios">Servicios</Link>
         <Link href="/reviews">Reseñas</Link>
         <Link href="/contacto">Contacto</Link>
+        <IgLink href="https://www.instagram.com/laconsultadevirginia/">
+          <i className="ri-instagram-line ri-lg" />
+        </IgLink>
       </LinksContainer>
     </Wrapper>
   </Container>

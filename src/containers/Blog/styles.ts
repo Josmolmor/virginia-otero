@@ -12,3 +12,8 @@ export const Content = styled.div`
 `;
 
 export const Description = styled(SectionDescription)``;
+
+export const LoadingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;

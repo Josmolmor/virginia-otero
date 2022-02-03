@@ -49,6 +49,10 @@ export default class AppDocument extends Document {
           rel="stylesheet"
         />
         <link
+          href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap"
+          rel="stylesheet"
+        />
+        <link
           href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
           rel="stylesheet"
         />
