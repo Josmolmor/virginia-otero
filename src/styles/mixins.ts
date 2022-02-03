@@ -24,12 +24,25 @@ export const SectionTitle = styled(H1)`
   margin: 0 auto 2rem auto;
   text-align: center;
   font-family: 'Playfair Display', serif;
+  max-width: 50rem;
+  font-size: 2rem;
+
+  ${from.mobile} {
+    font-size: 3rem;
+  }
 `;
 
 export const SectionDescription = styled(Body)`
   text-align: center;
   margin: 1rem auto 3rem;
-  max-width: 770px;
+  max-width: 50rem;
+`;
+
+export const Split = styled.div`
+  width: 50%;
+  height: 1px;
+  background-color: ${({ theme }) => theme.colors.grey200};
+  margin: 4rem auto;
 `;
 
 export const Anchor = css`
@@ -52,7 +65,7 @@ export const Anchor = css`
 `;
 
 export const Wrapper = styled.div`
-  padding: 0 1rem 3rem;
+  padding: 0 1rem 5rem;
   margin: auto;
   max-width: 1440px;
   width: 100%;

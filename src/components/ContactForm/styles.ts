@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import DefaultButton from '$/components/Button';
 
-import { Body } from '../Typography';
+import { Body, H3 } from '../Typography';
 
 export const Container = styled.div`
   display: flex;
@@ -24,20 +24,39 @@ export const Label = styled.label`
   color: ${({ theme }) => theme.colors.grey700};
 `;
 
-export const Input = styled.input`
+const commonInputCss = css`
   border: 1px solid ${({ theme }) => theme.colors.grey200};
-  border-radius: 0.25rem;
-  padding: 0.5rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: border 0.25s ease;
+
+  :hover {
+    border: 1px solid ${({ theme }) => theme.colors.grey400};
+  }
+`;
+
+export const Input = styled.input`
+  ${commonInputCss};
 `;
 
 export const TextArea = styled.textarea`
-  border: 1px solid ${({ theme }) => theme.colors.grey200};
-  border-radius: 0.25rem;
-  padding: 0.5rem;
+  ${commonInputCss};
+  min-height: 10rem;
+  resize: vertical;
 `;
 
-export const Button = styled(DefaultButton)``;
+export const Button = styled(DefaultButton)`
+  margin-top: 1rem;
+`;
 
 export const Outcome = styled(Body)`
   text-align: center;
+
+  i {
+    color: ${({ theme }) => theme.colors.pistachio};
+  }
+`;
+
+export const ThankYouLabel = styled(H3)`
+  margin: 0.5rem auto 2rem;
 `;

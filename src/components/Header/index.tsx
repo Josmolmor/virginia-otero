@@ -23,6 +23,7 @@ const Header: FC<Props> = ({ className }) => (
         <Link href="/blog">Blog</Link>
         <Link href="/sobre-mi">Sobre mi</Link>
         <Link href="/servicios">Servicios</Link>
+        <Link href="/reviews">Reseñas</Link>
         <Link href="/contacto">Contacto</Link>
       </LinksContainer>
     </Wrapper>

@@ -1,36 +1,37 @@
 import { PrismicRichText } from '@prismicio/react';
-import type { PrismicDocument, RichTextField } from '@prismicio/types';
-import { useEffect, useState } from 'react';
 
-import { Title } from '$/components/PostCard/styles';
+import Spinner from '$/components/Spinner';
+import { H1 } from '$/components/Typography';
 import { SectionTitle } from '$/styles/mixins';
 
 import useConnect from './connect';
-import { Container, Content } from './styles';
+import { Container, Content, Image, LoadingContainer, Text } from './styles';
 
 const About = () => {
-  const { isLoading, isError, error, data } = useConnect();
-  const [aboutText, setAboutText] = useState<RichTextField>([]);
-
-  useEffect(() => {
-    const aboutDocument = data?.results as unknown as PrismicDocument<{
-      text: RichTextField;
-    }>[];
-
-    if (aboutDocument && aboutDocument[0]) {
-      setAboutText(aboutDocument[0]?.data?.text);
-    }
-  }, [data]);
+  const { documents, loading } = useConnect();
 
   return (
     <Container>
       <SectionTitle>Sobre mi</SectionTitle>
-      <PrismicRichText
-        field={aboutText}
-        components={{
-          paragraph: ({ children }) => <Content>{children}</Content>,
-        }}
-      />
+      <Image $src="/images/me.jpg" />
+      <Content>
+        {loading && (
+          <LoadingContainer>
+            <Spinner />
+          </LoadingContainer>
+        )}
+        {documents && documents[0] && documents[0].data.text && (
+          <PrismicRichText
+            field={documents[0].data.text}
+            components={{
+              heading1: ({ children }) => (
+                <H1 style={{ margin: '0 0 2rem 0' }}>{children}</H1>
+              ),
+              paragraph: ({ children }) => <Text>{children}</Text>,
+            }}
+          />
+        )}
+      </Content>
     </Container>
   );
 };

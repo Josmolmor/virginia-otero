@@ -7,6 +7,7 @@ import {
   ButtonContainer,
   Container,
   Content,
+  CtaText,
   MainText,
   Service,
   Text,
@@ -58,6 +59,10 @@ const Services = () => {
         </Service>
       </Content>
       <ButtonContainer>
+        <CtaText>
+          ¿Te sientes identificada/o con algo que has leido en lo que puedes y/o
+          quieres mejorar?
+        </CtaText>
         <Button onClick={() => push('/contacto')}>¡Hablemos!</Button>
       </ButtonContainer>
     </Container>

@@ -10,7 +10,7 @@ export const Content = styled.ul`
   grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
   gap: 1.25rem;
   flex-grow: 1;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
   padding: 0;
 `;
 
@@ -36,6 +36,13 @@ export const Text = styled(Body)`
 `;
 
 export const ButtonContainer = styled.div`
+  align-items: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+`;
+
+export const CtaText = styled(Text)`
+  text-align: center;
+  margin-bottom: 2rem;
 `;

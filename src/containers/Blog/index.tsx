@@ -1,27 +1,16 @@
-import type { Query, RichTextField } from '@prismicio/types';
+import type { RichTextField } from '@prismicio/types';
 import { formatDistance } from 'date-fns';
 import es from 'date-fns/locale/es';
-import { useQuery } from 'react-query';
 
 import PostCard from '$/components/PostCard';
-import { SectionTitle } from '$/styles/mixins';
+import { SectionTitle, Split } from '$/styles/mixins';
 import type { Image } from '$/types/Document';
 
-import { Container, Content, Description, Split } from './styles';
+import useConnect from './connect';
+import { Container, Content, Description } from './styles';
 
 const Blog = () => {
-  const { _isLoading, _isError, _error, data } = useQuery<Query>(
-    'posts',
-    () =>
-      fetch(
-        'https://virginia-otero.cdn.prismic.io/api/v2/documents/search?ref=YfwNZhEAAC8ARs10&q=%5B%5Bat(document.type%2C+%22post%22)%5D%5D',
-      ).then((res) => res.json()),
-    {
-      keepPreviousData: true,
-      staleTime: Infinity,
-    },
-  );
-  const documents = data?.results;
+  const { documents, loading } = useConnect();
 
   return (
     <Container>

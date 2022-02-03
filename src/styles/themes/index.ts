@@ -19,6 +19,7 @@ const theme = {
     blue200: '#1F526B',
     green100: '#3EB85A',
     green200: '#0F6B24',
+    pistachio: '#A9D39E',
   },
   weights: {
     bold: 700,

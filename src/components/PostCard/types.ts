@@ -1,5 +1,6 @@
 import type { RichTextField } from '@prismicio/types';
-import type { Image } from 'src/types/Document';
+
+import type { Image } from '$/types/Document';
 
 interface Props {
   coverImage?: Image | null;

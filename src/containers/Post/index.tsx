@@ -1,32 +1,36 @@
-import type { Query } from '@prismicio/types';
+import { PrismicRichText } from '@prismicio/react';
 import type { FC } from 'react';
-import { useQuery } from 'react-query';
 
-import { Container, Title } from './styles';
+import Spinner from '$/components/Spinner';
+import { SectionDescription, SectionTitle, Split } from '$/styles/mixins';
+
+import useConnect from './connect';
+import { Container, Content, Date, LoadingContainer, Redacted } from './styles';
 import type Props from './types';
 
 const Post: FC<Props> = ({ query }) => {
-  const { slug } = query;
-
-  const { isLoading, isError, error, data } = useQuery<Query>(
-    `posts/${String(slug)}`,
-    () =>
-      fetch(
-        `https://virginia-otero.cdn.prismic.io/api/v2/documents/search?ref=YfwNZhEAAC8ARs10&q=%5B%5Bat(my.post.uid%2C%22${String(
-          slug,
-        )}%22)%5D%5D`,
-      ).then((res) => res.json()),
-    {
-      keepPreviousData: true,
-      staleTime: Infinity,
-    },
-  );
-  console.log(query);
-  console.log('data =>', isLoading, isError, error, data);
+  const { document, loading } = useConnect(query);
+  const postData = document?.data;
 
   return (
     <Container>
-      <Title>Post</Title>
+      {loading ? (
+        <LoadingContainer>
+          <Spinner />
+        </LoadingContainer>
+      ) : (
+        postData && (
+          <Content>
+            <SectionTitle>{postData.title[0]?.text}</SectionTitle>
+            <SectionDescription>{postData.description}</SectionDescription>
+            <Redacted>
+              <PrismicRichText field={postData.content} />
+            </Redacted>
+            <Split />
+            <Date>Redactado el {postData.date}</Date>
+          </Content>
+        )
+      )}
     </Container>
   );
 };
