@@ -1,4 +1,5 @@
 import { PrismicRichText } from '@prismicio/react';
+import type { RichTextField } from '@prismicio/types';
 
 import Spinner from '$/components/Spinner';
 import { H1 } from '$/components/Typography';
@@ -22,7 +23,7 @@ const About = () => {
         )}
         {documents && documents[0] && documents[0].data.text && (
           <PrismicRichText
-            field={documents[0].data.text}
+            field={documents[0].data.text as RichTextField}
             components={{
               heading1: ({ children }) => (
                 <H1 style={{ margin: '0 0 2rem 0' }}>{children}</H1>

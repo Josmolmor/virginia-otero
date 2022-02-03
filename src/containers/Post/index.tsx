@@ -1,4 +1,5 @@
 import { PrismicRichText } from '@prismicio/react';
+import type { RichTextField } from '@prismicio/types';
 import type { FC } from 'react';
 
 import Spinner from '$/components/Spinner';
@@ -19,12 +20,23 @@ const Post: FC<Props> = ({ query }) => {
           <Spinner />
         </LoadingContainer>
       ) : (
-        postData && (
+        postData &&
+        postData.title &&
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        postData.title[0] && (
           <Content>
-            <SectionTitle>{postData.title[0]?.text}</SectionTitle>
+            <PrismicRichText
+              field={postData.title as RichTextField}
+              components={{
+                heading1: ({ children }) => (
+                  <SectionTitle key="heading1">{children}</SectionTitle>
+                ),
+              }}
+            />
             <SectionDescription>{postData.description}</SectionDescription>
             <Redacted>
-              <PrismicRichText field={postData.content} />
+              <PrismicRichText field={postData.content as RichTextField} />
             </Redacted>
             <Split />
             <Date>Redactado el {postData.date}</Date>

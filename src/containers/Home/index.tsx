@@ -1,5 +1,3 @@
-import { SectionDescription, SectionTitle } from '$/styles/mixins';
-
 import { Container, Quote, Text } from './styles';
 
 const Home = () => (
