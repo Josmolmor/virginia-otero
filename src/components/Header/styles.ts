@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { LogoIcon } from '$/components/Icons';
 import DefaultLink from '$/components/Link';
-import { fancyAnchor, Wrapper as DefaultWrapper } from '$/styles/mixins';
+import { fancyAnchor, HeaderWrapper as DefaultWrapper } from '$/styles/mixins';
 import { from } from '$/styles/responsive';
 
 export const Wrapper = styled(DefaultWrapper)`

@@ -21,7 +21,6 @@ const Header: FC<Props> = ({ className }) => {
   const [showMenu, setShowMenu] = useState(false);
   const ref = useRef(null);
   useClickOutside(ref, () => setShowMenu(false));
-  console.log(isMobile);
 
   return (
     <Container className={className}>

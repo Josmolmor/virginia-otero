@@ -78,11 +78,37 @@ export const Anchor = css`
   }
 `;
 
-export const Wrapper = styled.div`
-  padding: 0 1rem 5rem;
+const commonWrapperCss = css`
   margin: auto;
   max-width: 1440px;
   width: 100%;
+`;
+
+export const HeaderWrapper = styled.div`
+  ${commonWrapperCss};
+  padding: 0 1rem 5rem;
+
+  ${from.mobile} {
+    padding: 0 1.5rem 3rem;
+  }
+
+  ${from.tablet} {
+    ${commonWrapperCss};
+    padding: 0 1rem;
+
+    ${from.mobile} {
+      padding: 0 1.5rem;
+    }
+
+    ${from.tablet} {
+      padding: 0 2.5rem;
+    }
+  }
+`;
+
+export const Wrapper = styled.div`
+  ${commonWrapperCss};
+  padding: 0 1rem 5rem;
 
   ${from.mobile} {
     padding: 0 1.5rem 3rem;
