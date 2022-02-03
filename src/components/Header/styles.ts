@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { LogoIcon } from '$/components/Icons';
 import DefaultLink from '$/components/Link';
-import { Wrapper as DefaultWrapper } from '$/styles/mixins';
+import { fancyAnchor, Wrapper as DefaultWrapper } from '$/styles/mixins';
 
 export const Wrapper = styled(DefaultWrapper)`
   align-items: center;
@@ -11,21 +11,35 @@ export const Wrapper = styled(DefaultWrapper)`
 
 export const Container = styled.header`
   align-items: center;
-  background: ${({ theme }) => theme.colors.primary200};
   color: ${({ theme }) => theme.colors.white};
   display: flex;
   padding: 0.75rem 0;
 `;
 
-export const Link = styled(DefaultLink)`
+export const LogoLink = styled(DefaultLink)`
   display: inline-block;
 `;
 
+export const Link = styled(DefaultLink)`
+  display: inline-block;
+  ${fancyAnchor};
+  transition: color 0.25s ease;
+
+  :hover {
+    color: ${({ theme }) => theme.colors.primary200};
+  }
+`;
+
 export const Logo = styled(LogoIcon)`
-  color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.grey700};
   flex-shrink: 0;
   height: 3rem;
   width: auto;
+  transition: color 0.25s ease;
+
+  :hover {
+    color: ${({ theme }) => theme.colors.primary200};
+  }
 `;
 
 export const LogoContainer = styled.div`
@@ -34,4 +48,10 @@ export const LogoContainer = styled.div`
   flex: 1;
   justify-content: flex-start;
   margin-right: auto;
+`;
+
+export const LinksContainer = styled.div`
+  align-items: center;
+  display: flex;
+  gap: 2rem;
 `;

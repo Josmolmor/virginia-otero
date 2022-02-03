@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 import { Anchor } from '$/styles/mixins';
 
 import Link from '../Link';
-import { commonOverlineCss, commonOverlineCssBold } from '../Typography';
 import type { Props } from './types';
 
 const commonButtonStyled = css<{
@@ -28,7 +27,7 @@ const commonButtonStyled = css<{
   :focus,
   :focus-within {
     outline: 2px solid ${({ theme }) => theme.colors.primary400};
-    background-color: ${({ theme }) => theme.colors.primary100};
+    background-color: ${({ theme }) => theme.colors.primary300};
   }
 
   :not(:disabled):hover {
@@ -56,11 +55,16 @@ export const ButtonText = styled.span<{
   $hasRightIcon?: boolean;
   $link: Props['link'];
 }>`
+  color: ${({ theme }) => theme.colors.white};
   display: block;
   margin: 0;
   text-align: center;
-  ${commonOverlineCss};
-
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 0.9375rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  
   ${({ $hasLeftIcon }) =>
     $hasLeftIcon &&
     css`
@@ -76,6 +80,9 @@ export const ButtonText = styled.span<{
   ${({ $link }) =>
     !$link &&
     css`
-      ${commonOverlineCssBold};
+      font-size: 0.75rem;
+      line-height: 0.9375rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
     `};
 `;

@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
+import addAlpha from '../utils/addAlpha';
+
 const GlobalStyle = createGlobalStyle`
   ${normalize};
   html,
@@ -20,6 +22,27 @@ const GlobalStyle = createGlobalStyle`
   #__next {
     display: flex;
     min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  div,
+  img,
+  p,
+  span,
+  em,
+  strong,
+  a {
+    &::-moz-selection {
+      /* Code for Firefox */
+      background: ${addAlpha('#FF707E', 0.5)};
+    }
+
+    &::selection {
+      background: ${addAlpha('#FF707E', 0.5)};
+    }
   }
 `;
 

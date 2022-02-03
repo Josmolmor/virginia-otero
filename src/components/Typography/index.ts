@@ -1,31 +1,40 @@
 import styled, { css } from 'styled-components';
 
+const fontColor = css`
+  color: ${({ theme }) => theme.colors.grey700};
+`;
+
 export const H1 = styled.h1`
+  ${fontColor};
   font-weight: ${({ theme }) => theme.weights.semiBold};
   font-size: 3rem;
   line-height: 120%;
 `;
 
 export const H2 = styled.h2`
+  ${fontColor};
+  color: ${({ theme }) => theme.colors.grey700};
   font-weight: ${({ theme }) => theme.weights.semiBold};
   font-size: 2.25rem;
   line-height: 120%;
 `;
 
 export const H3 = styled.h3`
+  ${fontColor};
   font-weight: ${({ theme }) => theme.weights.semiBold};
   font-size: 1.5rem;
   line-height: 140%;
 `;
 
 export const H4 = styled.h4`
-  font-family: 'Playfair Display', serif;
+  ${fontColor};
   font-weight: ${({ theme }) => theme.weights.semiBold};
   font-size: 1.125rem;
   line-height: 1.375rem;
 `;
 
 export const commonBodyCss = css`
+  ${fontColor};
   font-size: 1rem;
   line-height: 140%;
 `;
@@ -44,6 +53,7 @@ export const BodySemi = styled.p`
 `;
 
 const commonSmallCss = css`
+  ${fontColor};
   font-size: 0.875rem;
   line-height: 1.25rem;
 `;
@@ -62,11 +72,13 @@ export const SmallSemi = styled.p`
 `;
 
 export const Caption = styled.p`
+  ${fontColor};
   font-size: 0.75rem;
   line-height: 0.9375rem;
 `;
 
 export const commonOverlineCss = css`
+  ${fontColor};
   font-size: 0.75rem;
   line-height: 0.9375rem;
   /* identical to box height */

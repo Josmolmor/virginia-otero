@@ -1,8 +1,10 @@
-import { Container, Title } from './styles';
+import { SectionTitle } from '$/styles/mixins';
+
+import { Container } from './styles';
 
 const Home = () => (
   <Container>
-    <Title>Home</Title>
+    <SectionTitle>Hola!</SectionTitle>
   </Container>
 );
 

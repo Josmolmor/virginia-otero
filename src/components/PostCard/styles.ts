@@ -23,6 +23,7 @@ export const Content = styled.div`
 export const Title = styled(H4)`
   color: ${({ theme }) => theme.colors.grey700};
   font-size: 1.5rem;
+  font-family: 'Playfair Display', serif;
   line-height: 2rem;
   margin: 0 0 0.25rem 0;
   transition: color 0.25s ease;

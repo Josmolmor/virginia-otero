@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "$": "link:./src",
+    "@formspree/react": "^2.2.4",
     "@prismicio/client": "^6.0.0",
     "@prismicio/helpers": "^2.0.0",
     "@prismicio/react": "^2.0.3",

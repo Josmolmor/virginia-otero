@@ -1,17 +1,30 @@
 import type { FC } from 'react';
 
-import { Container, Link, Logo, LogoContainer, Wrapper } from './styles';
+import {
+  Container,
+  Link,
+  LinksContainer,
+  Logo,
+  LogoContainer,
+  LogoLink,
+  Wrapper,
+} from './styles';
 import type Props from './types';
 
 const Header: FC<Props> = ({ className }) => (
   <Container className={className}>
     <Wrapper>
       <LogoContainer>
-        <Link href="/">
+        <LogoLink href="/">
           <Logo />
-        </Link>
+        </LogoLink>
       </LogoContainer>
-      <Link href="/blog">Blog</Link>
+      <LinksContainer>
+        <Link href="/blog">Blog</Link>
+        <Link href="/sobre-mi">Sobre mi</Link>
+        <Link href="/servicios">Servicios</Link>
+        <Link href="/contacto">Contacto</Link>
+      </LinksContainer>
     </Wrapper>
   </Container>
 );

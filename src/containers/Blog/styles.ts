@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { H1 } from '$/components/Typography';
+import { SectionDescription } from '$/styles/mixins';
 
 export const Container = styled.div``;
 
@@ -11,4 +11,11 @@ export const Content = styled.div`
   flex-grow: 1;
 `;
 
-export const Title = styled(H1)``;
+export const Description = styled(SectionDescription)``;
+
+export const Split = styled.div`
+  width: 50%;
+  height: 1px;
+  background-color: ${({ theme }) => theme.colors.grey200};
+  margin: 4rem auto;
+`;

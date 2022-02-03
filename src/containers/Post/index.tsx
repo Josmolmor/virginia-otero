@@ -12,7 +12,7 @@ const Post: FC<Props> = ({ query }) => {
     `posts/${String(slug)}`,
     () =>
       fetch(
-        `https://virginia-otero.cdn.prismic.io/api/v2/documents/search?ref=YeIKthEAACkA0m1t&q=%5B%5Bat(my.post.uid%2C%22${String(
+        `https://virginia-otero.cdn.prismic.io/api/v2/documents/search?ref=YfwNZhEAAC8ARs10&q=%5B%5Bat(my.post.uid%2C%22${String(
           slug,
         )}%22)%5D%5D`,
       ).then((res) => res.json()),
