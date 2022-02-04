@@ -53,10 +53,14 @@ export const SectionDescription = styled(Body)<{
 `;
 
 export const Split = styled.div`
-  width: 50%;
+  width: 75%;
   height: 1px;
   background-color: ${({ theme }) => theme.colors.grey200};
   margin: 4rem auto;
+
+  ${from.mobile} {
+    width: 50%;
+  }
 `;
 
 export const Anchor = css`

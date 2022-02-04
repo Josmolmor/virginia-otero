@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import DefaultButton from '$/components/Button';
+import { from } from '$/styles/responsive';
 
 import { Body, H3 } from '../Typography';
 
@@ -16,8 +17,12 @@ export const Form = styled.form`
   flex-direction: column;
   margin: auto;
   max-width: 30rem;
-  padding: 2rem;
+  padding: 1rem;
   width: 100%;
+
+  ${from.mobile} {
+    padding: 2rem;
+  }
 `;
 
 export const Label = styled.label`

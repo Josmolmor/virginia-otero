@@ -14,10 +14,11 @@ export const Content = styled.div`
 `;
 
 export const Layout = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3rem;
-  justify-content: space-between;
+  ${from.mobile} {
+    display: flex;
+    gap: 3rem;
+    justify-content: space-between;
+  }
 `;
 
 export const Section = styled.div`
