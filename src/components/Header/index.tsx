@@ -34,7 +34,7 @@ const Header: FC<Props> = ({ className }) => {
           <i
             ref={ref}
             style={{ color: '#18171C' }}
-            className="ri-menu-3-line ri-2x"
+            className="ri-menu-3-line ri-xl"
             onClick={() => setShowMenu(!showMenu)}
           />
         )}
