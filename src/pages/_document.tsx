@@ -61,7 +61,7 @@ export default class AppDocument extends Document {
           rel="stylesheet"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap"
           rel="stylesheet"
         />
         <link

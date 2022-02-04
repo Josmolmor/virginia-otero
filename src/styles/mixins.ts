@@ -23,8 +23,8 @@ export const SectionTitle = styled(H1)`
   color: ${({ theme }) => theme.colors.primary200};
   margin: 1rem auto 2rem auto;
   text-align: center;
-  font-family: 'Lobster', serif;
-  font-weight: 100;
+  font-family: 'Lobster Two', serif;
+  font-weight: 400;
   max-width: 50rem;
   font-size: 2rem;
 
