@@ -2,9 +2,12 @@ import type {
   GetServerSidePropsContext,
   InferGetServerSidePropsType,
 } from 'next';
+import { NextSeo } from 'next-seo';
 import type { ParsedUrlQuery } from 'querystring';
 
 import Post from '$/containers/Post';
+
+import deSlugify from '../../utils/deSlugify';
 
 export function getServerSideProps({ query }: GetServerSidePropsContext): {
   props: {
@@ -21,7 +24,14 @@ export function getServerSideProps({ query }: GetServerSidePropsContext): {
 function PostPage({
   query,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  return <Post query={query} />;
+  const { slug } = query;
+
+  return (
+    <>
+      <NextSeo title={deSlugify(slug)} />
+      <Post slug={slug} />
+    </>
+  );
 }
 
 export default PostPage;

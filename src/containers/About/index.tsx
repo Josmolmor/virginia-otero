@@ -4,6 +4,7 @@ import type { RichTextField } from '@prismicio/types';
 import Spinner from '$/components/Spinner';
 import { H1 } from '$/components/Typography';
 import { SectionTitle } from '$/styles/mixins';
+import type { Image as DocumentImage } from '$/types/Document';
 
 import useConnect from './connect';
 import {
@@ -18,17 +19,19 @@ import {
 const About = () => {
   const { documents, loading } = useConnect();
 
+  console.log(documents);
+
   return (
     <Container>
       <SectionTitle>Sobre mí</SectionTitle>
-      <Image $src="/images/me.jpg" />
-      <Content>
-        {loading && (
-          <LoadingContainer>
-            <Spinner />
-          </LoadingContainer>
-        )}
-        {documents && documents[0] && documents[0].data.text && (
+      {loading && (
+        <LoadingContainer>
+          <Spinner />
+        </LoadingContainer>
+      )}
+      {documents && documents[0] && documents[0].data.text && (
+        <Content>
+          <Image $src={(documents[0].data.imagen as DocumentImage).url} />
           <PrismicRichText
             field={documents[0].data.text as RichTextField}
             components={{
@@ -40,8 +43,8 @@ const About = () => {
               paragraph: ({ children }) => <Text>{children}</Text>,
             }}
           />
-        )}
-      </Content>
+        </Content>
+      )}
       <VideoContainer>
         <blockquote
           className="instagram-media"

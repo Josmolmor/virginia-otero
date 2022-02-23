@@ -9,7 +9,6 @@ export const Content = styled.div`
   background-color: ${({ theme }) => addAlpha(theme.colors.primary200, 0.05)};
   border: 1px solid ${({ theme }) => theme.colors.grey100};
   border-radius: 1rem;
-  margin-top: 3rem;
   padding: 2rem;
 `;
 

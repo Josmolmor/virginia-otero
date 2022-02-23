@@ -1,7 +1,5 @@
-import type { ParsedUrlQuery } from 'querystring';
-
 interface Props {
-  query: ParsedUrlQuery;
+  slug?: string;
 }
 
 export default Props;

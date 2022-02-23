@@ -1,5 +1,5 @@
 import type { RichTextField } from '@prismicio/types';
-import { formatDistance } from 'date-fns';
+import { format } from 'date-fns';
 import es from 'date-fns/locale/es';
 
 import PostCard from '$/components/PostCard';
@@ -31,8 +31,7 @@ const Blog = () => {
         <Content>
           {documents?.map(({ id, uid, data }) => {
             const dateFormatted = data.date
-              ? formatDistance(new Date(String(data.date)), new Date(), {
-                  addSuffix: true,
+              ? format(new Date(String(data.date)), 'dd MMMM yyy', {
                   locale: es,
                 })
               : undefined;

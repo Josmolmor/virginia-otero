@@ -17,9 +17,8 @@ const theme = {
     primary900: '#382426',
     blue100: '#2C89B8',
     blue200: '#1F526B',
-    green100: '#3EB85A',
-    green200: '#0F6B24',
-    pistachio: '#A9D39E',
+    pistachio: '#89a18b',
+    pistachio200: '#77b77b',
   },
   weights: {
     bold: 700,

@@ -10,7 +10,7 @@ export const Content = styled.ul`
   grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
   gap: 1.25rem;
   flex-grow: 1;
-  margin-bottom: 4rem;
+  margin: 2.5rem 0;
   padding: 0;
 `;
 
@@ -24,7 +24,7 @@ export const Service = styled.li`
   border-radius: 0.5rem;
   list-style: none;
   padding: 1rem 1rem 1.25rem 1.5rem;
-  transition: box-shadow 0.15s ease;
+  transition: box-shadow 0.25s ease;
 
   :hover {
     box-shadow: 0 10px 20px rgba(35, 43, 56, 0.1);
@@ -45,4 +45,8 @@ export const ButtonContainer = styled.div`
 export const CtaText = styled(Text)`
   text-align: center;
   margin-bottom: 2rem;
+`;
+
+export const Icon = styled.i`
+  color: ${({ theme }) => theme.colors.pistachio200};
 `;

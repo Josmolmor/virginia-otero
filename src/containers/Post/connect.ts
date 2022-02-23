@@ -1,8 +1,8 @@
 import { usePrismicDocumentByUID } from '@prismicio/react';
-import type { ParsedUrlQuery } from 'querystring';
 
-const useConnect = (query: ParsedUrlQuery) => {
-  const { slug } = query;
+import type Props from './types';
+
+const useConnect = (slug: Props['slug']) => {
   const [document, { state }] = usePrismicDocumentByUID('post', String(slug));
   const loading = state === 'loading';
 

@@ -1,11 +1,16 @@
+import { AnimatePresence } from 'framer-motion';
 import type { FC } from 'react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import useClickOutside from '$/hooks/useClickOutside';
+import { from, useMediaQuery } from '$/styles/responsive';
 
-import { from, useMediaQuery } from '../../styles/responsive';
 import {
+  BranchVector,
+  BurgerIcon,
+  CloseIcon,
   Container,
+  DarkBranchVector,
   IgLink,
   Link,
   LinksContainer,
@@ -22,6 +27,14 @@ const Header: FC<Props> = ({ className }) => {
   const ref = useRef(null);
   useClickOutside(ref, () => setShowMenu(false));
 
+  useEffect(() => {
+    if (showMenu) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [showMenu]);
+
   return (
     <Container className={className}>
       <Wrapper>
@@ -30,14 +43,22 @@ const Header: FC<Props> = ({ className }) => {
             <Logo />
           </LogoLink>
         </LogoContainer>
-        {isMobile && (
-          <i
-            ref={ref}
-            style={{ color: '#18171C' }}
-            className="ri-menu-3-line ri-xl"
-            onClick={() => setShowMenu(!showMenu)}
-          />
-        )}
+        <AnimatePresence>
+          {isMobile &&
+            (showMenu ? (
+              <CloseIcon
+                ref={ref}
+                className="ri-close-line ri-xl"
+                onClick={() => setShowMenu(!showMenu)}
+              />
+            ) : (
+              <BurgerIcon
+                ref={ref}
+                className="ri-menu-3-line ri-xl"
+                onClick={() => setShowMenu(!showMenu)}
+              />
+            ))}
+        </AnimatePresence>
         {(!isMobile || (isMobile && showMenu)) && (
           <LinksContainer>
             <Link href="/blog">Blog</Link>
@@ -46,11 +67,17 @@ const Header: FC<Props> = ({ className }) => {
             <Link href="/reviews">Reseñas</Link>
             <Link href="/contacto">Contacto</Link>
             <IgLink href="https://www.instagram.com/laconsultadevirginia/">
-              <i className="ri-instagram-line ri-lg" />
+              {isMobile ? (
+                <i className="ri-instagram-line ri-2x" />
+              ) : (
+                <i className="ri-instagram-line ri-lg" />
+              )}
             </IgLink>
+            <DarkBranchVector />
           </LinksContainer>
         )}
       </Wrapper>
+      <BranchVector />
     </Container>
   );
 };

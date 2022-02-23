@@ -10,6 +10,7 @@ import {
   Image,
   ImageContainer,
   ReadMore,
+  ReadMoreLabel,
   Title,
 } from './styles';
 import type Props from './types';
@@ -25,18 +26,23 @@ const PostCard: FC<Props> = ({
   <Container className={className} href={`/blog/${slug}`}>
     <ImageContainer>
       <Image src={coverImage?.url} />
-    </ImageContainer>
-    <Content>
       <PrismicRichText
         field={title}
         components={{
           heading1: ({ children }) => <Title key="heading1">{children}</Title>,
         }}
       />
-      {date && <Date>{date}</Date>}
+    </ImageContainer>
+    <Content>
+      {date && (
+        <Date>
+          <i className="ri-calendar-line" />
+          {date}
+        </Date>
+      )}
       {description && <Description>{description}</Description>}
       <ReadMore>
-        Leer más
+        <ReadMoreLabel>Leer más</ReadMoreLabel>
         <ArrowRight />
       </ReadMore>
     </Content>

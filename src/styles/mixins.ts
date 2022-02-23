@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { Body, commonOverlineCss, H1 } from '$/components/Typography';
+import { commonOverlineCss, H1 } from '$/components/Typography';
 
 import { from } from './responsive';
 
@@ -21,21 +21,23 @@ export const fancyAnchor = css`
 
 export const SectionTitle = styled(H1)`
   color: ${({ theme }) => theme.colors.primary200};
-  margin: 1rem auto 2rem auto;
+  margin: 0 auto;
   text-align: center;
   font-family: 'Lobster Two', serif;
   font-weight: 400;
-  max-width: 50rem;
-  font-size: 2rem;
+  padding: 2rem 1rem;
 
-  ${from.mobile} {
-    font-size: 3rem;
+  ${from.tablet} {
+    max-width: 80%;
   }
 `;
 
-export const SectionDescription = styled(Body)<{
+export const SectionDescription = styled.p<{
   $align?: 'left' | 'center' | 'right';
 }>`
+  color: ${({ theme }) => theme.colors.grey700};
+  font-size: 16px;
+  line-height: 24px;
   text-align: center;
   margin: 1rem auto 3rem;
   max-width: 35rem;
@@ -112,4 +114,20 @@ export const Wrapper = styled.div`
   ${from.tablet} {
     padding: 0 2.5rem 3rem;
   }
+`;
+
+export const FullWidthImageContainer = styled.div`
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+`;
+
+export const Highlight = styled.span`
+  background: url('/images/brush-stroke-banner-5.svg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding: 8px 0;
 `;

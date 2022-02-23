@@ -3,14 +3,23 @@ import type { RichTextField } from '@prismicio/types';
 import type { FC } from 'react';
 
 import Spinner from '$/components/Spinner';
-import { SectionDescription, SectionTitle, Split } from '$/styles/mixins';
+import { FullWidthImageContainer, Split } from '$/styles/mixins';
+import type { Image } from '$/types/Document';
 
 import useConnect from './connect';
-import { Container, Content, Date, LoadingContainer, Redacted } from './styles';
+import {
+  Container,
+  Content,
+  Date,
+  FullWidthImage,
+  LoadingContainer,
+  Redacted,
+  SectionTitle,
+} from './styles';
 import type Props from './types';
 
-const Post: FC<Props> = ({ query }) => {
-  const { document, loading } = useConnect(query);
+const Post: FC<Props> = ({ slug }) => {
+  const { document, loading } = useConnect(slug);
   const postData = document?.data;
 
   return (
@@ -26,20 +35,26 @@ const Post: FC<Props> = ({ query }) => {
         // @ts-ignore
         postData.title[0] && (
           <Content>
-            <PrismicRichText
-              field={postData.title as RichTextField}
-              components={{
-                heading1: ({ children }) => (
-                  <SectionTitle key="heading1">{children}</SectionTitle>
-                ),
-              }}
-            />
-            <SectionDescription>{postData.description}</SectionDescription>
+            <FullWidthImageContainer>
+              <FullWidthImage src={(postData?.coverImage as Image)?.url} />
+              <PrismicRichText
+                field={postData.title as RichTextField}
+                components={{
+                  heading1: ({ children }) => (
+                    <SectionTitle key="heading1">{children}</SectionTitle>
+                  ),
+                }}
+              />
+            </FullWidthImageContainer>
+
+            {/* <SectionDescription>{postData.description}</SectionDescription> */}
             <Redacted>
               <PrismicRichText field={postData.content as RichTextField} />
             </Redacted>
             <Split />
-            <Date>Redactado el {postData.date}</Date>
+            <Date>
+              <i className="ri-calendar-line" /> Redactado el {postData.date}
+            </Date>
           </Content>
         )
       )}

@@ -7,7 +7,15 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { ThemeProvider } from 'styled-components';
 
 import Layout from '$/components/Layout';
-import { Body, H1, H2, H3, H4 } from '$/components/Typography';
+import {
+  Body,
+  H1,
+  H2,
+  H3,
+  H4,
+  List,
+  OrderedList,
+} from '$/components/Typography';
 import config from '$/config/seo.json';
 import { linkResolver } from '$/lib/linkResolver';
 import GlobalStyle from '$/styles/global';
@@ -35,6 +43,8 @@ const App = ({ Component, pageProps }: AppProps) => {
           heading3: ({ children }) => <H3>{children}</H3>,
           heading4: ({ children }) => <H4>{children}</H4>,
           paragraph: ({ children }) => <Body>{children}</Body>,
+          list: ({ children }) => <List>{children}</List>,
+          oList: ({ children }) => <OrderedList>{children}</OrderedList>,
         }}
       >
         <GlobalStyle />
