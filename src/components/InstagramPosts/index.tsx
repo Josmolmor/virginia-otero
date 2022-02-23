@@ -6,16 +6,19 @@ import type { Props } from './types';
 
 const InstagramPosts: FC<Props> = ({ className, posts = [] }) => (
   <Container className={className}>
-    {posts.map(({ id, caption, media_url, permalink, media_type }) => (
-      <Post
-        key={id}
-        id={id}
-        caption={caption}
-        media_url={media_url}
-        permalink={permalink}
-        media_type={media_type}
-      />
-    ))}
+    {posts.map(
+      ({ id, caption, media_url, permalink, media_type, thumbnail_url }) => (
+        <Post
+          key={id}
+          id={id}
+          caption={caption}
+          media_url={media_url}
+          permalink={permalink}
+          media_type={media_type}
+          thumbnail_url={thumbnail_url}
+        />
+      ),
+    )}
   </Container>
 );
 

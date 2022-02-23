@@ -2,7 +2,6 @@ import { FC, useState } from 'react';
 
 import Button from '$/components/Button';
 
-import type { MediaType } from '../types';
 import {
   ButtonIcon,
   Caption,
@@ -19,18 +18,19 @@ const Post: FC<Props> = ({
   media_type,
   media_url,
   permalink,
+  thumbnail_url,
   className,
 }) => {
   const [showCaption, setShowCaption] = useState(false);
 
-  const renderElement = (type: MediaType, url: string) => {
-    switch (type) {
+  const renderElement = () => {
+    switch (media_type) {
       default:
       case 'CAROUSEL_ALBUM':
       case 'IMAGE':
-        return <Image src={url} />;
+        return <Image src={media_url} />;
       case 'VIDEO':
-        return <Video src={url} controls />;
+        return <Video src={media_url} controls poster={thumbnail_url} />;
     }
   };
 
@@ -42,7 +42,7 @@ const Post: FC<Props> = ({
           <Button href={permalink}>Ver post en IG</Button>
         </Content>
       ) : (
-        renderElement(media_type, media_url)
+        renderElement()
       )}
       <ButtonIcon
         leftIcon={
