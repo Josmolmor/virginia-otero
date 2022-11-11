@@ -1,30 +1,56 @@
-import { Content } from '@prismicio/client'
+import { Content } from '@prismicio/client';
 
-import PostPreview from '../components/post-preview'
+import { Preview } from 'components/post';
+import styled from 'styled-components';
 
 type MoreStoriesProps = {
-  posts: Content.PostDocument[]
-}
+  posts: Content.PostDocument[];
+};
+
+const Container = styled.div`
+  display: grid;
+  gap: 5rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  padding-bottom: 8rem;
+
+  @media (min-width: 768px) {
+    gap: 4rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 1024px) {
+    gap: 6rem;
+  }
+`;
+
+const H2 = styled.h2`
+  @media (min-width: 768px) {
+    font-size: 4.5rem;
+  }
+
+  letter-spacing: -0.04em;
+  font-size: 2.75rem;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  font-weight: 700;
+`;
 
 export default function MoreStories({ posts }: MoreStoriesProps) {
   return (
     <section>
-      <h2 className="mb-8 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">
-        More Stories
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-32">
+      <H2>Más articulos</H2>
+      <Container>
         {posts.map((post) => (
-          <PostPreview
+          <Preview
             key={post.uid}
             href={post.url}
             title={post.data.title}
             coverImage={post.data.cover_image}
             date={post.data.date}
-            author={post.data.author}
             excerpt={post.data.excerpt}
           />
         ))}
-      </div>
+      </Container>
     </section>
-  )
+  );
 }

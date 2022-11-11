@@ -1,27 +1,67 @@
-import { PrismicRichText, SliceComponentProps } from '@prismicio/react'
-import { Content } from '@prismicio/client'
+import { PrismicRichText, SliceComponentProps } from '@prismicio/react';
+import { Content } from '@prismicio/client';
+import styled, { css } from 'styled-components';
+import Anchor from 'components/anchor';
+import AppearingImage from 'components/appearing-image';
 
-type TextProps = SliceComponentProps<Content.TextSlice>
+type TextProps = SliceComponentProps<Content.TextSlice>;
+
+const H2 = styled.h2`
+  font-size: 1.875rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1.375;
+`;
+
+const H3 = styled.h3`
+  font-size: 1.75rem;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+`;
+
+const P = styled.p`
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+`;
+
+const commonListStyles = css`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+const OL = styled.ol`
+  ${commonListStyles};
+`;
+
+const UL = styled.ol`
+  ${commonListStyles};
+`;
 
 const Text = ({ slice }: TextProps) => {
   return (
-    <section className="text-lg leading-relaxed">
+    <section>
       <PrismicRichText
         field={slice.primary.text}
         components={{
-          heading2: ({ children }) => (
-            <h2 className="text-3xl mt-12 mb-4 leading-snug">{children}</h2>
+          heading2: ({ children }) => <H2>{children}</H2>,
+          heading3: ({ children }) => <H3>{children}</H3>,
+          paragraph: ({ children }) => <P>{children}</P>,
+          list: ({ children }) => <UL>{children}</UL>,
+          oList: ({ children }) => <OL>{children}</OL>,
+          image: ({ node, children }) => (
+            <AppearingImage image={node}>{children}</AppearingImage>
           ),
-          heading3: ({ children }) => (
-            <h2 className="text-2xl mt-8 mb-4 leading-snug">{children}</h2>
-          ),
-          paragraph: ({ children }) => <p className="my-6">{children}</p>,
-          list: ({ children }) => <ul className="my-6">{children}</ul>,
-          oList: ({ children }) => <ol className="my-6">{children}</ol>,
+          hyperlink: ({ node, children, ...rest }) => (
+            <Anchor href={node.data.url} target={node.data.link_type}>
+              {children}
+            </Anchor>
+          )
         }}
       />
     </section>
-  )
-}
+  );
+};
 
-export default Text
+export default Text;

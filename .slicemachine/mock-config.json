@@ -38,6 +38,24 @@
           }
         }
       }
+    },
+    "Quote": {},
+    "Embedded": {
+      "default": {
+        "items": {}
+      }
+    },
+    "External": {
+      "default": {
+        "primary": {
+          "description": {
+            "config": {
+              "patternType": "PARAGRAPH",
+              "blocks": 1
+            }
+          }
+        }
+      }
     }
   }
 }

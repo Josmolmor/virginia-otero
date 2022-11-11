@@ -1,6 +1,8 @@
 {
-  "apiEndpoint": "https://nextjs-example-cms-prismic.prismic.io/api/v2",
-  "libraries": ["@/slices"],
+  "apiEndpoint": "https://virginia-otero.prismic.io/api/v2",
+  "libraries": [
+    "@/slices"
+  ],
   "localSliceSimulatorURL": "http://localhost:3000/slice-simulator",
   "_latest": "0.4.2"
 }

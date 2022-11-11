@@ -1,5 +1,42 @@
-/* purgecss start ignore */
-@tailwind base;
-@tailwind components;
-/* purgecss end ignore */
-@tailwind utilities;
+@import 'reset.css';
+@import 'fonts.css';
+
+html {
+    font-family: 'Mona Sans', system-ui, sans-serif;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    display: block;
+    margin: 0;
+}
+
+*, :after, :before {
+    box-sizing: border-box;
+    border: 0 solid #e2e8f0;
+}
+
+blockquote, dd, dl, figure, h1, h2, h3, h4, h5, h6, hr, p, pre {
+    margin: 0;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+h1, h2, h3, h4, h5, h6 {
+   font-size: inherit;
+   font-weight: inherit;
+}
+
+h3 {
+    font-size: 1.875rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.375;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}

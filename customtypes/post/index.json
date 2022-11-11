@@ -28,14 +28,6 @@
           "placeholder": "Date of publication"
         }
       },
-      "author": {
-        "type": "Link",
-        "config": {
-          "label": "Author",
-          "select": "document",
-          "customtypes": ["author"]
-        }
-      },
       "excerpt": {
         "type": "Text",
         "config": {
