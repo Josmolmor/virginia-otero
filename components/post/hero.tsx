@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { DateField, ImageField, TitleField } from '@prismicio/types';
 import { PrismicText } from '@prismicio/react';
 import { asText } from '@prismicio/helpers';
@@ -86,7 +85,12 @@ export default function Hero({
 }: HeroPostProps) {
   return (
     <section>
-      <HeroImage title={asText(title)} href={href} image={coverImage} />
+      <HeroImage
+        title={asText(title)}
+        href={href}
+        image={coverImage}
+        priority='true'
+      />
       <Container>
         <div>
           <Title>

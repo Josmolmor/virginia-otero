@@ -21,11 +21,8 @@ const LinkEl = styled(Link)`
 export default function Header() {
   return (
     <Container>
-      Logo
+      <LinkEl href='/'>Home</LinkEl>
       <Links>
-        <li>
-          <LinkEl href='/'>Home</LinkEl>
-        </li>
         <li>
           <LinkEl href='/posts'>Blog</LinkEl>
         </li>

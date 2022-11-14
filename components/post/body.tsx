@@ -22,7 +22,6 @@ const SliceContent = styled.div`
 const Slices = styled(SliceZone)``;
 
 export default function Body({ slices }: PostBodyProps) {
-  console.log(slices);
   return (
     <Container>
       <SliceContent>

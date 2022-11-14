@@ -8,6 +8,7 @@ type CoverImageProps = {
   title: string;
   image: ImageField;
   href?: string;
+  priority?: 'true';
 };
 
 const Container = styled(motion.div)`
@@ -24,6 +25,7 @@ export default function CoverImage({
   title,
   image: imageField,
   href,
+  priority,
   ...rest
 }: CoverImageProps) {
   const image = (
@@ -32,6 +34,7 @@ export default function CoverImage({
       width={2000}
       height={1000}
       imgixParams={{ fit: 'crop', ar: '2:1' }}
+      priority={priority}
     />
   );
 
