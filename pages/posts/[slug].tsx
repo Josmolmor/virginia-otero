@@ -12,7 +12,9 @@ import Layout from 'components/layout';
 import MoreStories from 'components/more-stories';
 import { Body, Header as PostHeader, Title } from 'components/post';
 import SectionSeparator from 'components/section-separator';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import LeavesSmall from 'components/icons/leaves-small';
+import LeavesMedium from 'components/icons/leaves-medium';
 
 type PostProps = {
   preview: boolean;
@@ -30,6 +32,31 @@ const ProgressBar = styled(motion.div)`
   transform-origin: 0%;
 `;
 
+const PostContent = styled.div`
+  position: relative;
+`;
+
+const commonLeavesCss = css`
+  z-index: -1;
+  position: absolute;
+  opacity: 0.5;
+  pointer-events: none;
+`;
+
+const LeavesIconTop = styled(LeavesSmall)`
+  ${commonLeavesCss};
+  right: 0;
+  top: 0;
+  transform: rotate(80deg);
+`;
+
+const LeavesIconMiddle = styled(LeavesMedium)`
+  ${commonLeavesCss};
+  left: 0;
+  transform: rotate(160deg) translateY(-50%);
+  top: 50%;
+`;
+
 export default function Post({ post, morePosts, preview }: PostProps) {
   const router = useRouter();
   const { scrollYProgress } = useScroll();
@@ -40,7 +67,7 @@ export default function Post({ post, morePosts, preview }: PostProps) {
         {router.isFallback ? (
           <Title>Loading…</Title>
         ) : (
-          <>
+          <PostContent>
             <article>
               <Head>
                 <title>{asText(post.data.title)} | Virginia Otero</title>
@@ -60,12 +87,14 @@ export default function Post({ post, morePosts, preview }: PostProps) {
                 date={post.data.date}
               />
               <Body slices={post.data.slices} />
+              <LeavesIconTop />
+              <LeavesIconMiddle />
             </article>
             <SectionSeparator />
             {morePosts && morePosts?.length > 0 && (
               <MoreStories posts={morePosts} />
             )}
-          </>
+          </PostContent>
         )}
       </Container>
     </Layout>

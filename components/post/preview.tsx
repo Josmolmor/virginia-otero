@@ -20,7 +20,6 @@ const Container = styled.div``;
 
 const PreviewImage = styled(CoverImage)`
   margin-bottom: 1.25rem;
-
   ${Image} {
     border-radius: 4px;
     @media (min-width: 640px) {

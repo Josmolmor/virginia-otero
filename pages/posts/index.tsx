@@ -8,6 +8,7 @@ import { createClient } from 'lib/prismic';
 import { GetStaticPropsContext, GetStaticPropsResult } from 'next';
 import { Content } from '@prismicio/client';
 import styled from 'styled-components';
+import LeavesSmall from '../../components/icons/leaves-small';
 
 type IndexProps = {
   preview: boolean;
@@ -20,6 +21,7 @@ const Heading = styled.section`
   align-items: center;
   flex-direction: column;
   display: flex;
+  position: relative;
 
   @media (min-width: 768px) {
     flex-direction: row;
@@ -52,38 +54,47 @@ const H4 = styled.h4`
   margin-top: 1.25rem;
 `;
 
+const LeavesIcon = styled(LeavesSmall)`
+  z-index: -1;
+  position: absolute;
+  right: 0;
+  transform: rotate(0deg);
+  opacity: 0.5;
+  top: 0;
+  pointer-events: none;
+`;
+
 export default function Index({ preview, allPosts }: IndexProps) {
   const [heroPost, ...morePosts] = allPosts;
 
   return (
-    <>
-      <Layout preview={preview}>
-        <Head>
-          <title>Blog | Virginia Otero</title>
-        </Head>
-        <Container>
-          <Heading>
-            <H1>Blog</H1>
-            <H4>
-              En este espacio encontrarás reflexiones, tips o artículos
-              relacionados con la inteligencia emocional desde una perspectiva
-              muy actual que voy compartiendo cuando la agenda me lo permite.
-              Espero que te puedan servir y los disfrutes.
-            </H4>
-          </Heading>
-          {heroPost && (
-            <Hero
-              title={heroPost.data.title}
-              href={heroPost.url}
-              coverImage={heroPost.data.cover_image}
-              date={heroPost.data.date}
-              excerpt={heroPost.data.excerpt}
-            />
-          )}
-          {morePosts?.length > 0 && <MoreStories posts={morePosts} />}
-        </Container>
-      </Layout>
-    </>
+    <Layout preview={preview}>
+      <Head>
+        <title>Blog | Virginia Otero</title>
+      </Head>
+      <Container>
+        <Heading>
+          <H1>Blog</H1>
+          <H4>
+            En este espacio encontrarás reflexiones, tips o artículos
+            relacionados con la inteligencia emocional desde una perspectiva muy
+            actual que voy compartiendo cuando la agenda me lo permite. Espero
+            que te puedan servir y los disfrutes.
+          </H4>
+          <LeavesIcon />
+        </Heading>
+        {heroPost && (
+          <Hero
+            title={heroPost.data.title}
+            href={heroPost.url}
+            coverImage={heroPost.data.cover_image}
+            date={heroPost.data.date}
+            excerpt={heroPost.data.excerpt}
+          />
+        )}
+        {morePosts?.length > 0 && <MoreStories posts={morePosts} />}
+      </Container>
+    </Layout>
   );
 }
 

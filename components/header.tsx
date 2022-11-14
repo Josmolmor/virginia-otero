@@ -39,9 +39,17 @@ const Anchor = styled.a`
   ${commonLinkStyles};
 `;
 
+const Li = styled.li`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const ContactButton = styled(Link)`
   ${commonLinkStyles};
   background-color: ${({ theme }) => theme.colors.brick};
+  padding: 5px 10px;
+  font-size: 14px;
   border-radius: 22px;
   color: white;
 
@@ -56,23 +64,23 @@ export default function Header() {
     <Container>
       <LinkEl href='/'>Home</LinkEl>
       <Links>
-        <li>
+        <Li>
           <LinkEl href='/about'>Sobre mi</LinkEl>
-        </li>
-        <li>
+        </Li>
+        <Li>
           <LinkEl href='/posts'>Blog</LinkEl>
-        </li>
-        <li>
+        </Li>
+        <Li>
           <Anchor
             target='_blank'
             href='https://www.instagram.com/laconsultadevirginia'
           >
             <Instagram size={20} />
           </Anchor>
-        </li>
-        <li>
+        </Li>
+        <Li>
           <ContactButton href='/contact'>Contacto</ContactButton>
-        </li>
+        </Li>
       </Links>
     </Container>
   );
