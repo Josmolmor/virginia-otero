@@ -2,6 +2,7 @@ import Alert from 'components/alert';
 import Meta from 'components/meta';
 import Header from './header';
 import styled from 'styled-components';
+import Footer from './footer';
 
 type LayoutProps = {
   preview: boolean;
@@ -41,6 +42,7 @@ export default function Layout({ preview, children }: LayoutProps) {
         <Header />
         <main>{children}</main>
       </Container>
+      <Footer />
     </>
   );
 }

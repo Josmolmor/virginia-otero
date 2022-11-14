@@ -34,7 +34,8 @@ const H1 = styled.h1`
     padding-right: 2rem;
   }
 
-  letter-spacing: -0.04em;
+  font-family: 'Great Sailor', sans-serif;
+  letter-spacing: 1px;
   font-size: 2.75rem;
   line-height: 1.2;
   font-weight: 700;

@@ -25,11 +25,13 @@ const Container = styled.div`
 
 const H2 = styled.h2`
   @media (min-width: 768px) {
-    font-size: 4.5rem;
+    font-size: 4rem;
   }
 
-  letter-spacing: -0.04em;
-  font-size: 2.75rem;
+  color: ${({ theme }) => theme.colors.darkBlue};
+  font-family: 'Great Sailor', sans-serif;
+  letter-spacing: 1px;
+  font-size: 2.5rem;
   margin-bottom: 2rem;
   line-height: 1.2;
   font-weight: 700;
@@ -38,7 +40,7 @@ const H2 = styled.h2`
 export default function MoreStories({ posts }: MoreStoriesProps) {
   return (
     <section>
-      <H2>Más articulos</H2>
+      <H2>Más artículos</H2>
       <Container>
         {posts.map((post) => (
           <Preview

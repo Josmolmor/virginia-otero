@@ -7,13 +7,13 @@ type IndexProps = {
   preview: boolean;
 };
 
-export default function Index({ preview }: IndexProps) {
+export default function About({ preview }: IndexProps) {
   return (
     <Layout preview={preview}>
       <Head>
-        <title>Virginia Otero Perez</title>
+        <title>Contacto | Virginia Otero Perez</title>
       </Head>
-      <Container>Main page</Container>
+      <Container>Contacto</Container>
     </Layout>
   );
 }

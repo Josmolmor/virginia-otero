@@ -3,9 +3,9 @@ import { asText } from '@prismicio/helpers';
 import { DateField, ImageField, TitleField } from '@prismicio/types';
 import Date from 'components/date';
 import CoverImage from 'components/cover-image';
-import { Title } from 'components/post';
+import Title from 'components/post/title';
 import styled from 'styled-components';
-import { Calendar } from 'react-feather';
+import { Clock } from 'react-feather';
 
 type PostHeaderProps = {
   title: TitleField;
@@ -29,20 +29,17 @@ const ImageContainer = styled.div`
 `;
 
 const TitleContainer = styled.div`
-  max-width: 42rem;
+  max-width: 44rem;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 3rem;
 `;
 
-const DateContent = styled(Date)`
-  font-size: 1rem;
-  opacity: 0.75;
-
-  @media (min-width: 768px) {
-    font-size: 1.125rem;
-  }
+const TitleValue = styled(Title)`
+  text-align: center;
 `;
+
+const DateContent = styled(Date)``;
 
 const DateContainer = styled.div`
   align-items: center;
@@ -50,10 +47,10 @@ const DateContainer = styled.div`
   gap: 8px;
   margin-bottom: 1.5rem;
   justify-content: center;
+  font-size: 1rem;
 
   @media (min-width: 768px) {
-    justify-content: flex-start;
-    padding-left: 0.25rem;
+    font-size: 1.125rem;
   }
 `;
 
@@ -61,12 +58,12 @@ export default function Header({ title, coverImage, date }: PostHeaderProps) {
   return (
     <>
       <TitleContainer>
-        <Title>
+        <TitleValue>
           <PrismicText field={title} />
-        </Title>
+        </TitleValue>
         <DateContainer>
-          <Calendar size={20} />
-          <DateContent dateField={date} />
+          <Clock size={20} />
+          Publicado el <DateContent dateField={date} />
         </DateContainer>
       </TitleContainer>
       <ImageContainer>

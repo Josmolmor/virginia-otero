@@ -9,6 +9,7 @@ type CoverImageProps = {
   image: ImageField;
   href?: string;
   priority?: 'true';
+  className?: string;
 };
 
 const Container = styled(motion.div)`
@@ -26,7 +27,7 @@ export default function CoverImage({
   image: imageField,
   href,
   priority,
-  ...rest
+  className
 }: CoverImageProps) {
   const image = (
     <Image
@@ -48,7 +49,7 @@ export default function CoverImage({
         visible: { opacity: 1 },
         hidden: { opacity: 0 }
       }}
-      {...rest}
+      className={className}
     >
       {href ? (
         <Link href={href} aria-label={title}>

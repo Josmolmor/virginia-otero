@@ -26,7 +26,7 @@ const ProgressBar = styled(motion.div)`
   left: 0;
   right: 0;
   height: 10px;
-  background: #cc6566;
+  background: ${({ theme }) => theme.colors.brick};
   transform-origin: 0%;
 `;
 
