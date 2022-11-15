@@ -3,7 +3,6 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Content, predicate } from '@prismicio/client';
 import { asImageSrc, asText } from '@prismicio/helpers';
-import { motion, useScroll } from 'framer-motion';
 
 import { createClient } from 'lib/prismic';
 
@@ -21,16 +20,6 @@ type PostProps = {
   post: Content.PostDocument;
   morePosts: Content.PostDocument[];
 };
-
-const ProgressBar = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 10px;
-  background: ${({ theme }) => theme.colors.brick};
-  transform-origin: 0%;
-`;
 
 const PostContent = styled.div`
   position: relative;
@@ -59,7 +48,6 @@ const LeavesIconMiddle = styled(LeavesMedium)`
 
 export default function Post({ post, morePosts, preview }: PostProps) {
   const router = useRouter();
-  const { scrollYProgress } = useScroll();
 
   return (
     <Layout preview={preview}>
@@ -80,7 +68,6 @@ export default function Post({ post, morePosts, preview }: PostProps) {
                   })}
                 />
               </Head>
-              <ProgressBar style={{ scaleX: scrollYProgress }} />
               <PostHeader
                 title={post.data.title}
                 coverImage={post.data.cover_image}

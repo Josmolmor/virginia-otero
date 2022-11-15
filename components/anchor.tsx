@@ -14,6 +14,7 @@ const A = styled.a`
   transition-property: color;
   transition: 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
 
+  &:focus-within,
   &:hover {
     color: ${({ theme }) => theme.colors.brick};
   }
@@ -23,6 +24,7 @@ const Container = styled(Link)`
   transition-property: color;
   transition: 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
 
+  &:focus-within,
   &:hover {
     color: ${({ theme }) => theme.colors.brick};
   }

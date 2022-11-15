@@ -3,6 +3,7 @@ import Meta from 'components/meta';
 import Header from './header';
 import styled from 'styled-components';
 import Footer from './footer';
+import { useRouter } from 'next/router';
 
 type LayoutProps = {
   preview: boolean;
@@ -34,6 +35,8 @@ const Container = styled.div`
 `;
 
 export default function Layout({ preview, children }: LayoutProps) {
+  const { route } = useRouter();
+
   return (
     <>
       <Meta />
@@ -42,7 +45,7 @@ export default function Layout({ preview, children }: LayoutProps) {
         <Header />
         <main>{children}</main>
       </Container>
-      <Footer />
+      {route !== '/contact' ? <Footer /> : null}
     </>
   );
 }

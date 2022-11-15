@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import styled, { css } from 'styled-components';
 import { Instagram } from 'react-feather';
+import Logo from './icons/logo/wordmark';
+import { useRouter } from 'next/router';
 
 const Container = styled.div`
   align-items: center;
@@ -36,6 +38,7 @@ const commonLinkStyles = css`
   transition-property: color;
   transition: 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
 
+  &:focus-within,
   &:hover {
     color: ${({ theme }) => theme.colors.brick};
   }
@@ -53,11 +56,16 @@ const Li = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
+  align-self: flex-start;
 `;
 
 const HomeLi = styled(Li)`
   @media (min-width: 768px) {
     margin-right: auto;
+  }
+
+  ${LinkEl} {
+    padding: 0;
   }
 `;
 
@@ -69,18 +77,36 @@ const ContactButton = styled(Link)`
   border-radius: 22px;
   color: white;
 
+  &:focus-within,
   &:hover {
     background-color: ${({ theme }) => theme.colors.darkBrick};
     color: white;
   }
 `;
 
+const MainLogo = styled(Logo)`
+  color: ${({ theme }) => theme.colors.brick};
+  width: 105.065px;
+  height: auto;
+
+  ${({ $isHomeRoute }) =>
+    $isHomeRoute &&
+    css`
+      width: 261.05px;
+    `};
+`;
+
 export default function Header() {
+  const { route } = useRouter();
+  const isHomeRoute = route === '/';
+
   return (
     <Container>
       <Links>
         <HomeLi>
-          <LinkEl href='/'>Home</LinkEl>
+          <LinkEl href='/'>
+            <MainLogo $isHomeRoute={isHomeRoute} />
+          </LinkEl>
         </HomeLi>
         <Li>
           <LinkEl href='/about'>Sobre mi</LinkEl>

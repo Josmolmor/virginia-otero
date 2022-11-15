@@ -55,7 +55,6 @@ const DateContainer = styled.div`
 `;
 
 export default function Header({ title, coverImage, date }: PostHeaderProps) {
-  console.log(title, coverImage);
   return (
     <>
       <TitleContainer>

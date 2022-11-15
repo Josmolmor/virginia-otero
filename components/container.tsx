@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 type ContainerProps = {
   children: React.ReactNode;
+  className?: string;
 };
 
 const Container = styled.div`
@@ -9,6 +10,9 @@ const Container = styled.div`
   margin-bottom: 5rem;
 `;
 
-export default function ContainerComponent({ children }: ContainerProps) {
-  return <Container>{children}</Container>;
+export default function ContainerComponent({
+  children,
+  className
+}: ContainerProps) {
+  return <Container className={className}>{children}</Container>;
 }
