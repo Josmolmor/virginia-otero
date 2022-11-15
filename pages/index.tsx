@@ -3,7 +3,8 @@ import Container from 'components/container';
 import Layout from 'components/layout';
 import { GetStaticPropsContext, GetStaticPropsResult } from 'next';
 import styled, { css } from 'styled-components';
-import { Button } from 'components/contact-form';
+import Link from 'next/link';
+import { buttonCss } from 'components/contact-form';
 import CoverImage from 'components/cover-image';
 import {
   MessageCircle,
@@ -15,6 +16,7 @@ import {
   Target,
   Award
 } from 'react-feather';
+import LeavesSmall from '../components/icons/leaves-small';
 
 const ServicesList = [
   {
@@ -57,14 +59,39 @@ type IndexProps = {
 
 const Heading = styled.div`
   display: flex;
-  justify-content: space-between;
+  padding-bottom: 5rem;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+
+  @media (min-width: 640px) {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 0;
+  }
+
+  @media (min-width: 1024px) {
+    align-items: flex-start;
+    padding-bottom: 0;
+  }
 `;
 
 const LeftSide = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  flex-basis: 42%;
+
+  @media (min-width: 640px) {
+    gap: 1.5rem;
+    flex-basis: 42%;
+  }
+
+  @media (min-width: 768px) {
+    gap: 3rem;
+  }
 `;
 
 const commonH4 = css`
@@ -85,12 +112,15 @@ const Buttons = styled.div`
   gap: 8px;
 `;
 
-const MainButton = styled(Button)`
-  max-width: 10rem;
+const MainButton = styled(Link)`
+  ${buttonCss};
+  @media (min-width: 640px) {
+    max-width: 10rem;
+  }
 `;
 
-const SecondaryButton = styled(Button)`
-  max-width: 10rem;
+const SecondaryButton = styled(Link)`
+  ${buttonCss};
   color: ${({ theme }) => theme.colors.brick};
   background-color: white;
   border: 1px solid ${({ theme }) => theme.colors.brick};
@@ -101,13 +131,27 @@ const SecondaryButton = styled(Button)`
     border: 1px solid ${({ theme }) => theme.colors.darkBrick};
     color: ${({ theme }) => theme.colors.darkBrick};
   }
+
+  @media (min-width: 640px) {
+    max-width: 10rem;
+  }
 `;
 
 const Image = styled(CoverImage)`
   border-radius: 20px;
-  margin-top: -5rem;
-  flex-basis: 50%;
   z-index: 1;
+
+  > img {
+    border-radius: 20px;
+  }
+
+  @media (min-width: 1024px) {
+    margin-top: -5rem;
+  }
+
+  @media (min-width: 640px) {
+    flex-basis: 50%;
+  }
 `;
 
 const H2 = styled.h2`
@@ -147,8 +191,12 @@ const ServicesStripe = styled.div`
   padding: 4rem 1.25rem 6rem;
 
   @media (min-width: 768px) {
-    margin-top: -2rem;
+    margin-top: 0;
     padding: 4rem 7rem 6rem;
+  }
+
+  @media (min-width: 1024px) {
+    margin-top: -2.5rem;
   }
 
   @media (min-width: 1280px) {
@@ -209,9 +257,109 @@ const Card = styled.div`
   }
 `;
 
+const TipsContainer = styled.div`
+  align-items: center;
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  padding: 4rem 0 6rem;
+  flex-direction: column;
+  gap: 64px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    margin-top: 0;
+    padding: 4rem 0 6rem;
+    gap: 0;
+  }
+`;
+
+const TipsImage = styled(CoverImage)`
+  border-radius: 20px;
+  z-index: 1;
+
+  > img {
+    border-radius: 20px;
+  }
+`;
+
+const ImageContainer = styled.div`
+  display: flex;
+  position: relative;
+  flex-basis: 40%;
+`;
+
+const TextSide = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 64px;
+`;
+
+const TextContent = styled.div`
+  color: ${({ theme }) => theme.colors.darkBrick};
+  text-align: center;
+`;
+
+const Words = styled.p`
+  font-size: 2rem;
+
+  @media (min-width: 1024px) {
+    font-size: 2.5rem;
+  }
+`;
+
+const Emphasis = styled.span`
+  font-size: 3.5rem;
+  font-weight: 600;
+  letter-spacing: 5px;
+
+  @media (min-width: 1024px) {
+    font-size: 4rem;
+  }
+`;
+
+const commonLeavesCss = css`
+  z-index: -1;
+  position: absolute;
+  pointer-events: none;
+`;
+
+const TipsLeavesLeft = styled(LeavesSmall)`
+  ${commonLeavesCss};
+  opacity: 0.75;
+  left: -120px;
+  top: -48px;
+  width: 200px;
+  height: auto;
+
+  @media (min-width: 1024px) {
+    width: 250px;
+  }
+`;
+
+const TipsLeavesRight = styled(LeavesSmall)`
+  ${commonLeavesCss};
+  opacity: 0.55;
+  right: -80px;
+  bottom: -32px;
+  transform: rotate(140deg);
+`;
+
 export default function Index({ preview }: IndexProps) {
   const coverImage = {
     url: 'https://images.prismic.io/virginia-otero/29bb912f-358d-4b6c-b7da-e732ef79310c_PXL_20221022_123232979.PORTRAIT.jpg?auto=compress,format',
+    alt: '',
+    copyright: '',
+    dimensions: {
+      height: 100,
+      width: 200
+    }
+  };
+
+  const tipsImage = {
+    url: 'https://images.pexels.com/photos/4468206/pexels-photo-4468206.jpeg?cs=srgb&dl=pexels-karolina-grabowska-4468206.jpg&fm=jpg',
     alt: '',
     copyright: '',
     dimensions: {
@@ -234,8 +382,8 @@ export default function Index({ preview }: IndexProps) {
               scrambled it to make a type specimen book.
             </H4>
             <Buttons>
-              <MainButton>Hablemos</MainButton>
-              <SecondaryButton>Conóceme</SecondaryButton>
+              <MainButton href='/contact'>Hablemos</MainButton>
+              <SecondaryButton href='/about'>Conóceme</SecondaryButton>
             </Buttons>
           </LeftSide>
           <Image image={coverImage} />
@@ -261,6 +409,21 @@ export default function Index({ preview }: IndexProps) {
           </Services>
         </ServicesStripe>
       </Container>
+      <TipsContainer>
+        <ImageContainer>
+          <TipsImage image={tipsImage} />
+          <TipsLeavesLeft />
+          <TipsLeavesRight />
+        </ImageContainer>
+        <TextSide>
+          <TextContent>
+            <Words>¿Quieres aprender</Words>
+            <Emphasis>Tips de psicologia</Emphasis>
+            <Words>en 3 minutos?</Words>
+          </TextContent>
+          <MainButton href='/posts'>Ir al blog</MainButton>
+        </TextSide>
+      </TipsContainer>
     </Layout>
   );
 }

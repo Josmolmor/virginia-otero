@@ -43,7 +43,10 @@ const Input = styled.input`
   ${borders};
 `;
 
-export const Button = styled.button`
+export const buttonCss = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid transparent;
   cursor: pointer;
   width: 100%;
@@ -61,6 +64,10 @@ export const Button = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.colors.darkBrick};
   }
+`;
+
+export const Button = styled.button`
+  ${buttonCss};
 `;
 
 const ContactForm: FC<Props> = ({ children, className }) => {
