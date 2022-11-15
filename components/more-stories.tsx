@@ -11,7 +11,7 @@ const Container = styled.div`
   display: grid;
   gap: 5rem;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  padding-bottom: 8rem;
+  padding-bottom: 4rem;
 
   @media (min-width: 768px) {
     gap: 4rem;

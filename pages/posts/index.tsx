@@ -78,8 +78,9 @@ export default function Index({ preview, allPosts }: IndexProps) {
           <H4>
             En este espacio encontrarás reflexiones, tips o artículos
             relacionados con la inteligencia emocional desde una perspectiva muy
-            actual que voy compartiendo cuando la agenda me lo permite. Espero
-            que te puedan servir y los disfrutes.
+            actual que voy compartiendo cuando la agenda me lo permite.
+            <br />
+            Espero que te puedan servir y los disfrutes.
           </H4>
           <LeavesIcon />
         </Heading>

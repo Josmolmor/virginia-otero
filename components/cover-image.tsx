@@ -5,11 +5,13 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 type CoverImageProps = {
-  title: string;
   image: ImageField;
+  title?: string;
   href?: string;
   priority?: 'true';
   className?: string;
+  crop?: boolean;
+  ar?: string;
 };
 
 const Container = styled(motion.div)`
@@ -23,10 +25,12 @@ const Container = styled(motion.div)`
 export const Image = styled(PrismicNextImage)``;
 
 export default function CoverImage({
-  title,
   image: imageField,
+  title,
   href,
   priority,
+  crop,
+  ar,
   className
 }: CoverImageProps) {
   const image = (
@@ -34,8 +38,8 @@ export default function CoverImage({
       field={imageField}
       width={2000}
       height={1000}
-      imgixParams={{ fit: 'crop', ar: '2:1' }}
       priority={priority}
+      imgixParams={{ fit: crop ? 'crop' : '', ar }} // ar: '2:1'
     />
   );
 
@@ -52,7 +56,7 @@ export default function CoverImage({
       className={className}
     >
       {href ? (
-        <Link href={href} aria-label={title}>
+        <Link href={href} aria-label={title ?? ''}>
           {image}
         </Link>
       ) : (

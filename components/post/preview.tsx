@@ -97,7 +97,13 @@ export default function Preview({
 }: PostPreviewProps) {
   return (
     <Container>
-      <PreviewImage title={asText(title)} href={href} image={coverImage} />
+      <PreviewImage
+        title={asText(title)}
+        href={href}
+        image={coverImage}
+        crop
+        ar={'2:1'}
+      />
       <H3>
         <Anchor href={href}>
           <PrismicText field={title} />
