@@ -43,7 +43,7 @@ const H4 = styled.h4`
   padding-left: 0;
   text-align: center;
   max-width: 44rem;
-  margin: 1.25rem auto 6rem;
+  margin: 1.25rem auto 7rem;
 
   @media (min-width: 768px) {
     margin: 1.25rem auto 4rem;
@@ -109,6 +109,7 @@ export default function About({ preview }: IndexProps) {
           <Icons color='white' />
           <Form />
         </FormContainer>
+        <div style={{ paddingBottom: '5rem' }} />
       </Main>
     </Layout>
   );

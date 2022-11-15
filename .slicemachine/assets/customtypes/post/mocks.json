@@ -14,12 +14,12 @@
     "title": [
       {
         "type": "heading1",
-        "text": "Begun",
+        "text": "Stuck",
         "spans": []
       }
     ],
-    "date": "2013-12-07",
-    "excerpt": "get",
+    "date": "2013-04-05",
+    "excerpt": "community",
     "cover_image": {
       "dimensions": {
         "width": 900,
@@ -27,7 +27,7 @@
       },
       "alt": null,
       "copyright": null,
-      "url": "https://images.unsplash.com/photo-1531771686035-25f47595c87a"
+      "url": "https://images.unsplash.com/photo-1586952518485-11b180e92764"
     },
     "slices": []
   }

@@ -94,7 +94,7 @@
         },
         "screenshotPaths": {
           "default": {
-            "path": "/Users/jmolin/Documents/Projects/cms-prismic-app/slices/External/default/preview.png",
+            "path": "/Users/jmolin/Documents/Projects/virginia-otero/slices/External/default/preview.png",
             "width": 798,
             "height": 482
           }
@@ -159,9 +159,65 @@
         },
         "screenshotPaths": {
           "default": {
-            "path": "/Users/jmolin/Documents/Projects/cms-prismic-app/.slicemachine/assets/slices/Image/default/preview.png",
+            "path": "/Users/jmolin/Documents/Projects/virginia-otero/.slicemachine/assets/slices/Image/default/preview.png",
             "width": 800,
             "height": 444
+          }
+        }
+      },
+      "instagram_post": {
+        "library": "slices",
+        "id": "instagram_post",
+        "name": "InstagramPost",
+        "description": "InstagramPost",
+        "model": {
+          "id": "instagram_post",
+          "type": "SharedSlice",
+          "name": "InstagramPost",
+          "description": "InstagramPost",
+          "variations": [
+            {
+              "id": "default",
+              "name": "Default",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "InstagramPost",
+              "primary": {
+                "ig_id": {
+                  "type": "Text",
+                  "config": {
+                    "label": "IG Id",
+                    "placeholder": ""
+                  }
+                }
+              },
+              "items": {},
+              "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+            }
+          ]
+        },
+        "mocks": {
+          "default": {
+            "variation": "default",
+            "version": "sktwi1xtmkfgx8626",
+            "items": [
+              {}
+            ],
+            "primary": {
+              "ig_id": "get"
+            },
+            "slice_type": "instagram_post"
+          }
+        },
+        "meta": {
+          "fileName": "index",
+          "extension": "js"
+        },
+        "screenshotPaths": {
+          "default": {
+            "path": "/Users/jmolin/Documents/Projects/virginia-otero/slices/InstagramPost/default/preview.png",
+            "width": 3088,
+            "height": 1748
           }
         }
       },
@@ -238,7 +294,7 @@
         },
         "screenshotPaths": {
           "default": {
-            "path": "/Users/jmolin/Documents/Projects/cms-prismic-app/.slicemachine/assets/slices/Text/default/preview.png",
+            "path": "/Users/jmolin/Documents/Projects/virginia-otero/.slicemachine/assets/slices/Text/default/preview.png",
             "width": 800,
             "height": 248
           }

@@ -2,19 +2,16 @@
 
 import External from './External';
 import Image from './Image';
-import InstagramPost from './InstagramPost';
 import Text from './Text';
 
 export {
 	External,
 	Image,
-	InstagramPost,
 	Text,
 };
 
 export const components = {
 	external: External,
 	image: Image,
-	instagram_post: InstagramPost,
 	text: Text,
 };

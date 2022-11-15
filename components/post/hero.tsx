@@ -83,7 +83,7 @@ const DateContent = styled.div`
   display: flex;
   gap: 6px;
   font-size: 0.875rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   text-transform: uppercase;
   font-weight: 500;
   color: #9c9c9c;

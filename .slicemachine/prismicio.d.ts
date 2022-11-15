@@ -179,6 +179,45 @@ type ImageSliceVariation = ImageSliceDefault;
  */
 export type ImageSlice = prismicT.SharedSlice<"image", ImageSliceVariation>;
 /**
+ * Primary content in InstagramPost → Primary
+ *
+ */
+interface InstagramPostSliceDefaultPrimary {
+    /**
+     * IG Id field in *InstagramPost → Primary*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: instagram_post.primary.ig_id
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    ig_id: prismicT.KeyTextField;
+}
+/**
+ * Default variation for InstagramPost Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: `InstagramPost`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type InstagramPostSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<InstagramPostSliceDefaultPrimary>, never>;
+/**
+ * Slice variation for *InstagramPost*
+ *
+ */
+type InstagramPostSliceVariation = InstagramPostSliceDefault;
+/**
+ * InstagramPost Shared Slice
+ *
+ * - **API ID**: `instagram_post`
+ * - **Description**: `InstagramPost`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type InstagramPostSlice = prismicT.SharedSlice<"instagram_post", InstagramPostSliceVariation>;
+/**
  * Primary content in Text → Primary
  *
  */
@@ -222,6 +261,6 @@ declare module "@prismicio/client" {
         (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
     }
     namespace Content {
-        export type { PostDocumentData, PostDocumentDataSlicesSlice, PostDocument, AllDocumentTypes, ExternalSliceDefaultPrimary, ExternalSliceDefault, ExternalSliceVariation, ExternalSlice, ImageSliceDefaultPrimary, ImageSliceDefault, ImageSliceVariation, ImageSlice, TextSliceDefaultPrimary, TextSliceDefault, TextSliceVariation, TextSlice };
+        export type { PostDocumentData, PostDocumentDataSlicesSlice, PostDocument, AllDocumentTypes, ExternalSliceDefaultPrimary, ExternalSliceDefault, ExternalSliceVariation, ExternalSlice, ImageSliceDefaultPrimary, ImageSliceDefault, ImageSliceVariation, ImageSlice, InstagramPostSliceDefaultPrimary, InstagramPostSliceDefault, InstagramPostSliceVariation, InstagramPostSlice, TextSliceDefaultPrimary, TextSliceDefault, TextSliceVariation, TextSlice };
     }
 }

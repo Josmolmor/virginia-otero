@@ -7,10 +7,11 @@ import { useRouter } from 'next/router';
 const Container = styled.div`
   align-items: center;
   display: flex;
-  padding: 16px 20px;
+  padding: 16px 0;
   justify-content: center;
 
   @media (min-width: 768px) {
+    padding: 16px 20px;
     justify-content: flex-start;
   }
 `;
@@ -20,12 +21,8 @@ const Links = styled.ul`
   list-style: none;
   padding: 0;
   gap: 12px;
-  flex-direction: column;
+  flex-direction: row;
   flex: 1;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
 `;
 
 const commonLinkStyles = css`
@@ -56,7 +53,10 @@ const Li = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
-  align-self: flex-start;
+
+  @media (min-width: 768px) {
+    align-self: flex-start;
+  }
 `;
 
 const HomeLi = styled(Li)`

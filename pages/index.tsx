@@ -16,7 +16,9 @@ import {
   Target,
   Award
 } from 'react-feather';
-import LeavesSmall from '../components/icons/leaves-small';
+import LeavesSmall from 'components/icons/leaves-small';
+import { useEffect, useState } from 'react';
+import Branch from 'components/icons/branch';
 
 const ServicesList = [
   {
@@ -56,6 +58,10 @@ const ServicesList = [
 type IndexProps = {
   preview: boolean;
 };
+
+const MainContainer = styled(Container)`
+  margin-bottom: 0;
+`;
 
 const Heading = styled.div`
   display: flex;
@@ -114,13 +120,16 @@ const Buttons = styled.div`
 
 const MainButton = styled(Link)`
   ${buttonCss};
-  @media (min-width: 640px) {
+  @media (min-width: 768px) {
     max-width: 10rem;
   }
 `;
 
 const SecondaryButton = styled(Link)`
   ${buttonCss};
+  @media (min-width: 768px) {
+    max-width: 10rem;
+  }
   color: ${({ theme }) => theme.colors.brick};
   background-color: white;
   border: 1px solid ${({ theme }) => theme.colors.brick};
@@ -262,9 +271,9 @@ const TipsContainer = styled.div`
   display: flex;
   flex: 1;
   justify-content: space-between;
-  padding: 4rem 0 6rem;
+  padding: 4rem;
   flex-direction: column;
-  gap: 64px;
+  gap: 56px;
 
   @media (min-width: 768px) {
     flex-direction: row;
@@ -294,7 +303,7 @@ const TextSide = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 64px;
+  gap: 56px;
 `;
 
 const TextContent = styled.div`
@@ -303,7 +312,11 @@ const TextContent = styled.div`
 `;
 
 const Words = styled.p`
-  font-size: 2rem;
+  font-size: 1.5rem;
+
+  @media (min-width: 768px) {
+    font-size: 2rem;
+  }
 
   @media (min-width: 1024px) {
     font-size: 2.5rem;
@@ -311,9 +324,13 @@ const Words = styled.p`
 `;
 
 const Emphasis = styled.span`
-  font-size: 3.5rem;
+  font-size: 2rem;
   font-weight: 600;
   letter-spacing: 5px;
+
+  @media (min-width: 768px) {
+    font-size: 3.5rem;
+  }
 
   @media (min-width: 1024px) {
     font-size: 4rem;
@@ -342,9 +359,53 @@ const TipsLeavesLeft = styled(LeavesSmall)`
 const TipsLeavesRight = styled(LeavesSmall)`
   ${commonLeavesCss};
   opacity: 0.55;
-  right: -80px;
+  right: -60px;
   bottom: -32px;
   transform: rotate(140deg);
+
+  @media (min-width: 640px) {
+    right: -80px;
+  }
+`;
+
+const InstagramContainer = styled.div`
+  color: white;
+  background-color: ${({ theme }) => theme.colors.brick};
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 4rem 1.25rem 6rem;
+  overflow: hidden;
+
+  @media (min-width: 768px) {
+    padding: 4rem 7rem 6rem;
+  }
+`;
+
+const IgTitle = styled(H2)`
+  text-align: center;
+`;
+
+const BranchIcon = styled(Branch)`
+  mix-blend-mode: screen;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: scaleX(-1);
+  width: 100%;
+  height: auto;
+
+  @media (min-width: 768px) {
+    width: auto;
+    height: 73%;
+  }
+
+  @media (min-width: 1024px) {
+    height: 95%;
+  }
 `;
 
 export default function Index({ preview }: IndexProps) {
@@ -368,12 +429,22 @@ export default function Index({ preview }: IndexProps) {
     }
   };
 
+  const [igVisible, setIgVisible] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      document.querySelector('.eapps-link')?.remove();
+      document.querySelector('.eapps-widget-toolbar')?.remove();
+      document.querySelector('.eapps-instagram-feed-title-container')?.remove();
+    }, 1250);
+  }, []);
+
   return (
     <Layout preview={preview}>
       <Head>
         <title>Virginia Otero Perez</title>
       </Head>
-      <Container>
+      <MainContainer>
         <Heading>
           <LeftSide>
             <H4>
@@ -408,22 +479,31 @@ export default function Index({ preview }: IndexProps) {
             </Cards>
           </Services>
         </ServicesStripe>
-      </Container>
-      <TipsContainer>
-        <ImageContainer>
-          <TipsImage image={tipsImage} />
-          <TipsLeavesLeft />
-          <TipsLeavesRight />
-        </ImageContainer>
-        <TextSide>
-          <TextContent>
-            <Words>¿Quieres aprender</Words>
-            <Emphasis>Tips de psicologia</Emphasis>
-            <Words>en 3 minutos?</Words>
-          </TextContent>
-          <MainButton href='/posts'>Ir al blog</MainButton>
-        </TextSide>
-      </TipsContainer>
+        <TipsContainer>
+          <ImageContainer>
+            <TipsImage image={tipsImage} />
+            <TipsLeavesLeft />
+            <TipsLeavesRight />
+          </ImageContainer>
+          <TextSide>
+            <TextContent>
+              <Words>¿Quieres aprender</Words>
+              <Emphasis>Tips de psicologia</Emphasis>
+              <Words>en 3 minutos?</Words>
+            </TextContent>
+            <MainButton href='/posts'>Ir al blog</MainButton>
+          </TextSide>
+        </TipsContainer>
+        {/*<InstagramContainer>
+            <IgTitle>Instagram</IgTitle>
+            <script
+              src='https://apps.elfsight.com/p/platform.js'
+              defer
+            ></script>
+            <div className='elfsight-app-dbc38c2e-7887-4515-84a3-09e8fa149d27'></div>
+            <BranchIcon />
+          </InstagramContainer>*/}
+      </MainContainer>
     </Layout>
   );
 }
