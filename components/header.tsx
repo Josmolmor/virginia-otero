@@ -5,8 +5,12 @@ import { Instagram } from 'react-feather';
 const Container = styled.div`
   align-items: center;
   display: flex;
-  justify-content: space-between;
   padding: 16px 20px;
+  justify-content: center;
+
+  @media (min-width: 768px) {
+    justify-content: flex-start;
+  }
 `;
 
 const Links = styled.ul`
@@ -14,6 +18,12 @@ const Links = styled.ul`
   list-style: none;
   padding: 0;
   gap: 12px;
+  flex-direction: column;
+  flex: 1;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 const commonLinkStyles = css`
@@ -45,6 +55,12 @@ const Li = styled.li`
   align-items: center;
 `;
 
+const HomeLi = styled(Li)`
+  @media (min-width: 768px) {
+    margin-right: auto;
+  }
+`;
+
 const ContactButton = styled(Link)`
   ${commonLinkStyles};
   background-color: ${({ theme }) => theme.colors.brick};
@@ -62,8 +78,10 @@ const ContactButton = styled(Link)`
 export default function Header() {
   return (
     <Container>
-      <LinkEl href='/'>Home</LinkEl>
       <Links>
+        <HomeLi>
+          <LinkEl href='/'>Home</LinkEl>
+        </HomeLi>
         <Li>
           <LinkEl href='/about'>Sobre mi</LinkEl>
         </Li>
