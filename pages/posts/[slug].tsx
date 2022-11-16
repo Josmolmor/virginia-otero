@@ -15,6 +15,8 @@ import styled, { css } from 'styled-components';
 import LeavesSmall from 'components/icons/leaves-small';
 import LeavesMedium from 'components/icons/leaves-medium';
 
+import ShareSocials from 'components/share-socials';
+
 type PostProps = {
   preview: boolean;
   post: Content.PostDocument;
@@ -47,12 +49,12 @@ const LeavesIconMiddle = styled(LeavesMedium)`
 `;
 
 export default function Post({ post, morePosts, preview }: PostProps) {
-  const router = useRouter();
+  const { asPath, isFallback } = useRouter();
 
   return (
     <Layout preview={preview}>
       <Container>
-        {router.isFallback ? (
+        {isFallback ? (
           <Title>Loading…</Title>
         ) : (
           <PostContent>
@@ -77,6 +79,17 @@ export default function Post({ post, morePosts, preview }: PostProps) {
               <LeavesIconTop />
               <LeavesIconMiddle />
             </article>
+            <ShareSocials
+              title={post.data.title[0].text}
+              url={asPath}
+              types={[
+                'linkedin',
+                'twitter',
+                'facebook',
+                'telegram',
+                'whatsapp'
+              ]}
+            />
             <SectionSeparator />
             {morePosts && morePosts?.length > 0 && (
               <MoreStories posts={morePosts} />

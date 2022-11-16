@@ -1,6 +1,7 @@
 import { PrismicPreview } from '@prismicio/next';
-import { repositoryName } from '../lib/prismic';
+import { repositoryName } from 'lib/prismic';
 import 'styles/index.css';
+import 'remixicon/fonts/remixicon.css';
 import styled, { ThemeProvider } from 'styled-components';
 import { themeLight, GlobalStyles } from 'styles/themes';
 import { motion, useScroll } from 'framer-motion';

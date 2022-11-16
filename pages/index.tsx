@@ -319,7 +319,7 @@ const Words = styled.p`
   }
 
   @media (min-width: 1024px) {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
   }
 `;
 
@@ -329,11 +329,11 @@ const Emphasis = styled.span`
   letter-spacing: 5px;
 
   @media (min-width: 768px) {
-    font-size: 3.5rem;
+    font-size: 3.25rem;
   }
 
   @media (min-width: 1024px) {
-    font-size: 4rem;
+    font-size: 3.5rem;
   }
 `;
 
@@ -457,7 +457,7 @@ export default function Index({ preview }: IndexProps) {
               <SecondaryButton href='/about'>Conóceme</SecondaryButton>
             </Buttons>
           </LeftSide>
-          <Image image={coverImage} />
+          <Image image={coverImage} priority='true' />
         </Heading>
         <ServicesStripe>
           <Services>
@@ -470,7 +470,7 @@ export default function Index({ preview }: IndexProps) {
             <Cards>
               {ServicesList.map(({ icon, text }) => {
                 return (
-                  <Card>
+                  <Card key={text}>
                     {icon}
                     <span>{text}</span>
                   </Card>

@@ -72,7 +72,7 @@ const HomeLi = styled(Li)`
 const ContactButton = styled(Link)`
   ${commonLinkStyles};
   background-color: ${({ theme }) => theme.colors.brick};
-  padding: 5px 10px;
+  padding: 8px 10px;
   font-size: 14px;
   border-radius: 22px;
   color: white;
