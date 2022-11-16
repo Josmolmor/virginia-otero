@@ -55,7 +55,6 @@ const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  background-color: white;
 
   @media (min-width: 768px) {
     gap: 12px;
