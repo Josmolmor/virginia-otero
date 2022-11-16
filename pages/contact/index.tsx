@@ -3,7 +3,7 @@ import Container from 'components/container';
 import Layout from 'components/layout';
 import { GetStaticPropsContext, GetStaticPropsResult } from 'next';
 import ContactForm from 'components/contact-form';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 import Socials from 'components/socials';
 
 type IndexProps = {
@@ -43,7 +43,7 @@ const H4 = styled.h4`
   padding-left: 0;
   text-align: center;
   max-width: 44rem;
-  margin: 1.25rem auto 7rem;
+  margin: 1.25rem auto 6rem;
 
   @media (min-width: 768px) {
     margin: 1.25rem auto 4rem;
@@ -51,10 +51,14 @@ const H4 = styled.h4`
 `;
 
 const FormContainer = styled.div`
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
   position: relative;
   background-color: white;
 
   @media (min-width: 768px) {
+    gap: 12px;
     width: 50%;
   }
   margin: auto;
@@ -63,11 +67,8 @@ const FormContainer = styled.div`
 const Form = styled(ContactForm)``;
 
 const Icons = styled(Socials)`
-  position: absolute;
-  left: 50%;
-  top: -64px;
-  transform: translateX(-50%);
-  gap: 12px;
+  position: initial;
+  gap: 8px;
 
   > * {
     border-radius: 2px;
@@ -87,7 +88,8 @@ const Icons = styled(Socials)`
     right: -54px;
     transform: none;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
+    position: absolute;
   }
 `;
 
@@ -106,8 +108,8 @@ export default function About({ preview }: IndexProps) {
           sociales.
         </H4>
         <FormContainer>
-          <Icons color='white' />
           <Form />
+          <Icons color='white' />
         </FormContainer>
         <div style={{ paddingBottom: '5rem' }} />
       </Main>

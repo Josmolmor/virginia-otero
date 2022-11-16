@@ -1,6 +1,8 @@
 import React, { FC, ReactNode } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import styled, { css } from 'styled-components';
+import { track } from '@panelbear/panelbear-js';
+import { CheckCircle } from 'react-feather';
 
 type Props = {
   children: ReactNode;
@@ -70,21 +72,45 @@ export const Button = styled.button`
   ${buttonCss};
 `;
 
+const Result = styled.p`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+const Text = styled.p`
+  margin: auto;
+  max-width: 20rem;
+  font-size: 1.125rem;
+  text-align: center;
+`;
+
 const ContactForm: FC<Props> = ({ children, className }) => {
   const [state, handleSubmit] = useForm('xvovzplq');
 
+  const trackSend = (e) => {
+    e.preventDefault();
+    track(`ContactForm-${e.target.email.value.split('@')[0]}`);
+    void handleSubmit(e);
+  };
+
   if (state.succeeded) {
     return (
-      <p>
-        ¡Gracias por el mensaje!
-        <br />
-        Me pondré en contacto contigo lo antes posible si es necesario
-      </p>
+      <Result>
+        <CheckCircle size={48} color='#72D6BE' />
+        <Text>
+          ¡Mensaje recibido, gracias!
+          <br />
+          Me pondré en contacto contigo lo antes posible si es necesario.
+        </Text>
+      </Result>
     );
   }
 
   return (
-    <Form onSubmit={handleSubmit} className={className}>
+    <Form onSubmit={trackSend} className={className}>
       <Label htmlFor='email'>Correo electrónico</Label>
       <Input required id='email' type='email' name='email' />
       <ValidationError prefix='Email' field='email' errors={state.errors} />

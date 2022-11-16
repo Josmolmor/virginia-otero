@@ -6,6 +6,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import { themeLight, GlobalStyles } from 'styles/themes';
 import { motion, useScroll } from 'framer-motion';
 import { useRouter } from 'next/router';
+import { usePanelbear } from '@panelbear/panelbear-nextjs';
 
 const ProgressBar = styled(motion.div)`
   position: fixed;
@@ -21,6 +22,7 @@ const ProgressBar = styled(motion.div)`
 function MyApp({ Component, pageProps }) {
   const { route } = useRouter();
   const { scrollYProgress } = useScroll();
+  usePanelbear('7vU98W2auhv');
 
   return (
     <ThemeProvider theme={themeLight}>

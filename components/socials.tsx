@@ -17,6 +17,7 @@ const Container = styled.ul`
 `;
 
 const Icon = styled.li`
+  flex-shrink: 0;
   ${({ $color }) =>
     $color &&
     css`
