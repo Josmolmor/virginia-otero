@@ -20,7 +20,8 @@ import { useEffect, useState } from 'react';
 import Branch from 'components/icons/branch';
 import { NextSeo } from 'next-seo';
 import { useScroll } from 'framer-motion';
-import useMediaQuery from '../hooks/useMediaQuery';
+import useMediaQuery from 'hooks/useMediaQuery';
+import useViewportSizes from 'hooks/useViewportSizes';
 
 const ServicesList = [
   {
@@ -461,50 +462,12 @@ const TipsLeavesRight = styled(LeavesSmall)`
   }
 `;
 
-const InstagramContainer = styled.div`
-  color: white;
-  background-color: ${({ theme }) => theme.colors.brick};
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  padding: 4rem 1.25rem 6rem;
-  overflow: hidden;
-
-  @media (min-width: 768px) {
-    padding: 4rem 7rem 6rem;
-  }
-`;
-
-const IgTitle = styled(H2)`
-  text-align: center;
-`;
-
-const BranchIcon = styled(Branch)`
-  mix-blend-mode: screen;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  transform: scaleX(-1);
-  width: 100%;
-  height: auto;
-
-  @media (min-width: 768px) {
-    width: auto;
-    height: 73%;
-  }
-
-  @media (min-width: 1024px) {
-    height: 95%;
-  }
-`;
-
 export default function Index({ preview }: IndexProps) {
   const isDesktop = useMediaQuery(768);
   const { scrollY } = useScroll();
   const [opacity, setOpacity] = useState(0);
+  const [showHeadingElementsByDefault, setShowHeadingElementsByDefault] =
+    useState(false);
 
   useEffect(() => {
     return scrollY.onChange((latest) => {
@@ -534,13 +497,30 @@ export default function Index({ preview }: IndexProps) {
     }
   };
 
+  const [vpWidth] = useViewportSizes({ dimension: 'w' });
+  useEffect(() => {
+    if (vpWidth > 768) {
+      setTimeout(() => setShowHeadingElementsByDefault(true), 250);
+    } else {
+      setTimeout(() => setShowHeadingElementsByDefault(true), 250);
+    }
+  }, [vpWidth]);
+
   return (
     <Layout preview={preview}>
       <NextSeo />
       <MainContainer>
         <Heading>
           {isDesktop && <Backdrop style={{ opacity }} />}
-          <LeftSide style={{ opacity: isDesktop ? opacity : 1 }}>
+          <LeftSide
+            style={{
+              opacity: isDesktop
+                ? opacity
+                : showHeadingElementsByDefault
+                ? 1
+                : 0
+            }}
+          >
             <ScriptText $visible={opacity > 0}>
               Psicología, Crecimiento y Desarrollo Personal
             </ScriptText>
@@ -554,7 +534,7 @@ export default function Index({ preview }: IndexProps) {
               <SecondaryButton href='/about'>Conóceme</SecondaryButton>
             </Buttons>
           </LeftSide>
-          <Image image={coverImage} priority='true' />
+          <Image image={coverImage} priority='true' animationDuration={0.25} />
         </Heading>
         <ServicesStripe>
           <Services>

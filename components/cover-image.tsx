@@ -12,6 +12,7 @@ type CoverImageProps = {
   className?: string;
   crop?: boolean;
   ar?: string;
+  animationDuration?: number;
 };
 
 const Container = styled(motion.div)`
@@ -31,7 +32,8 @@ export default function CoverImage({
   priority,
   crop,
   ar,
-  className
+  className,
+  animationDuration
 }: CoverImageProps) {
   const image = (
     <Image
@@ -48,7 +50,7 @@ export default function CoverImage({
       initial='hidden'
       whileInView='visible'
       viewport={{ once: true }}
-      transition={{ duration: 0.75 }}
+      transition={{ duration: animationDuration || 0.75 }}
       variants={{
         visible: { opacity: 1 },
         hidden: { opacity: 0 }
