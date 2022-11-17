@@ -1,10 +1,10 @@
-import Head from 'next/head';
 import Container from 'components/container';
 import Layout from 'components/layout';
 import { GetStaticPropsContext, GetStaticPropsResult } from 'next';
 import ContactForm from 'components/contact-form';
 import styled from 'styled-components';
 import Socials from 'components/socials';
+import { NextSeo } from 'next-seo';
 
 type IndexProps = {
   preview: boolean;
@@ -95,9 +95,7 @@ const Icons = styled(Socials)`
 export default function About({ preview }: IndexProps) {
   return (
     <Layout preview={preview}>
-      <Head>
-        <title>Contacto | Virginia Otero Perez</title>
-      </Head>
+      <NextSeo title='Contacto' description='Hablemos' />
       <Main>
         <Background />
         <H1>Hablemos</H1>

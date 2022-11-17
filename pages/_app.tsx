@@ -7,6 +7,8 @@ import { themeLight, GlobalStyles } from 'styles/themes';
 import { motion, useScroll } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { usePanelbear } from '@panelbear/panelbear-nextjs';
+import { DefaultSeo } from 'next-seo';
+import SEO from 'config/next-seo';
 
 const ProgressBar = styled(motion.div)`
   position: fixed;
@@ -26,6 +28,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <ThemeProvider theme={themeLight}>
+      <DefaultSeo {...SEO} />
       <GlobalStyles />
       <PrismicPreview repositoryName={repositoryName}>
         {route === '/posts/[slug]' ? (

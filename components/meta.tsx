@@ -1,7 +1,5 @@
 import Head from 'next/head';
 
-import { CMS_NAME, HOME_OG_IMAGE_URL } from '../lib/constants';
-
 export default function Meta() {
   return (
     <Head>
@@ -33,11 +31,11 @@ export default function Meta() {
       <meta name='msapplication-config' content='/favicon/browserconfig.xml' />
       <meta name='theme-color' content='#000' />
       <link rel='alternate' type='application/rss+xml' href='/feed.xml' />
-      <meta
-        name='description'
-        content={`A statically generated blog example using Next.js and ${CMS_NAME}.`}
-      />
-      <meta property='og:image' content={HOME_OG_IMAGE_URL} />
+      {/*<meta name='description' content='Crecimiento y desarrollo personal' />*/}
+      {/*<meta
+        property='og:image'
+        content='https://images.pexels.com/photos/1207875/pexels-photo-1207875.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
+      />*/}
     </Head>
   );
 }

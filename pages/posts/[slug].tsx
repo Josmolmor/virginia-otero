@@ -16,6 +16,7 @@ import LeavesSmall from 'components/icons/leaves-small';
 import LeavesMedium from 'components/icons/leaves-medium';
 
 import ShareSocials from 'components/share-socials';
+import { NextSeo } from 'next-seo';
 
 type PostProps = {
   preview: boolean;
@@ -59,17 +60,21 @@ export default function Post({ post, morePosts, preview }: PostProps) {
         ) : (
           <PostContent>
             <article>
-              <Head>
-                <title>{asText(post.data.title)} | Virginia Otero</title>
-                <meta
-                  property='og:image'
-                  content={asImageSrc(post.data.cover_image, {
-                    width: 1200,
-                    height: 600,
-                    fit: 'crop'
-                  })}
-                />
-              </Head>
+              <NextSeo
+                title={asText(post.data.title)}
+                description={post.data.excerpt}
+                openGraph={{
+                  images: [
+                    {
+                      url: asImageSrc(post.data.cover_image, {
+                        width: 1200,
+                        height: 600,
+                        fit: 'crop'
+                      })
+                    }
+                  ]
+                }}
+              />
               <PostHeader
                 title={post.data.title}
                 coverImage={post.data.cover_image}

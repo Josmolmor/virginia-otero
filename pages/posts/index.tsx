@@ -1,14 +1,14 @@
-import Head from 'next/head';
 import Container from 'components/container';
 import MoreStories from 'components/more-stories';
 import { Hero } from 'components/post';
 import Layout from 'components/layout';
-import { CMS_NAME } from 'lib/constants';
 import { createClient } from 'lib/prismic';
 import { GetStaticPropsContext, GetStaticPropsResult } from 'next';
 import { Content } from '@prismicio/client';
 import styled from 'styled-components';
-import LeavesSmall from '../../components/icons/leaves-small';
+import LeavesSmall from 'components/icons/leaves-small';
+import { NextSeo } from 'next-seo';
+import { asImageSrc } from '@prismicio/helpers';
 
 type IndexProps = {
   preview: boolean;
@@ -69,9 +69,21 @@ export default function Index({ preview, allPosts }: IndexProps) {
 
   return (
     <Layout preview={preview}>
-      <Head>
-        <title>Blog | Virginia Otero</title>
-      </Head>
+      <NextSeo
+        title='Blog'
+        description='Aprende tips de psicología en 3 minutos'
+        openGraph={{
+          images: [
+            {
+              url: asImageSrc(heroPost.data.cover_image, {
+                width: 1200,
+                height: 600,
+                fit: 'crop'
+              })
+            }
+          ]
+        }}
+      />
       <Container>
         <Heading>
           <H1>Blog</H1>

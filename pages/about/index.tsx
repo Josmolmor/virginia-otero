@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Container from 'components/container';
 import Layout from 'components/layout';
 import { GetStaticPropsContext, GetStaticPropsResult } from 'next';
@@ -6,6 +5,7 @@ import styled, { css } from 'styled-components';
 import CoverImage from 'components/cover-image';
 import LeavesSmall from 'components/icons/leaves-small';
 import LeavesMedium from 'components/icons/leaves-medium';
+import { NextSeo } from 'next-seo';
 
 type IndexProps = {
   preview: boolean;
@@ -37,10 +37,18 @@ const Hello = styled.h4`
   font-family: 'Great Sailor', sans-serif;
   letter-spacing: 1px;
   position: absolute;
-  right: 120px;
+  left: 150px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 5rem;
+  font-size: 7rem;
+  text-shadow: 1px 1px #000;
+`;
+
+const MainImage = styled(CoverImage)`
+  > img {
+    max-height: 30rem;
+    object-fit: cover;
+  }
 `;
 
 const Image = styled(CoverImage)`
@@ -135,7 +143,7 @@ const LeavesMediumIcon = styled(LeavesMedium)`
 
 export default function About({ preview }: IndexProps) {
   const coverImage = {
-    url: 'https://images.pexels.com/photos/1000529/pexels-photo-1000529.jpeg?cs=srgb&dl=pexels-jimmy-chan-1000529.jpg&fm=jpg',
+    url: 'https://images.prismic.io/virginia-otero/a3f49766-b762-40f7-af25-35ef8b95fa08_PXL_20221022_122517415.MP_50.jpg?auto=compress,format',
     alt: '',
     copyright: '',
     dimensions: {
@@ -156,13 +164,21 @@ export default function About({ preview }: IndexProps) {
 
   return (
     <Layout preview={preview}>
-      <Head>
-        <title>Sobre mi | Virginia Otero Perez</title>
-      </Head>
+      <NextSeo
+        title='Sobre mi'
+        description='Conóceme un poco más'
+        openGraph={{
+          images: [
+            {
+              url: coverImage.url
+            }
+          ]
+        }}
+      />
       <Container>
         <Content>
           <ImageContainer>
-            <CoverImage image={coverImage} priority='true' />
+            <MainImage image={coverImage} priority='true' />
             <Hello>Hola!</Hello>
           </ImageContainer>
           <HeadingContainer>
