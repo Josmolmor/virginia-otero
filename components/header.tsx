@@ -66,6 +66,7 @@ const LinkEl = styled(Link)`
 
 const LinkLogo = styled(Link)`
   ${commonLinkStyles};
+  color: ${({ theme }) => theme.colors.logo}
   padding: 10px 0;
   z-index: 851;
 
@@ -110,7 +111,6 @@ const ContactButton = styled(Link)`
 `;
 
 const MainLogo = styled(Logo)`
-  color: ${({ theme }) => theme.colors.brick};
   width: 105.065px;
   height: auto;
 

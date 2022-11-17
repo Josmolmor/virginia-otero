@@ -4,6 +4,7 @@ const themeDefault = {
   colors: {
     brick: '#cc6566',
     darkBrick: '#954546',
+    logo: '#9a4445',
     darkBlue: '#071a2e'
   }
 };
