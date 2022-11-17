@@ -4,12 +4,14 @@ import External from './External';
 import Image from './Image';
 import InstagramPost from './InstagramPost';
 import Text from './Text';
+import TextImage from './TextImage';
 
 export {
 	External,
 	Image,
 	InstagramPost,
 	Text,
+	TextImage,
 };
 
 export const components = {
@@ -17,4 +19,5 @@ export const components = {
 	image: Image,
 	instagram_post: InstagramPost,
 	text: Text,
+	text_image: TextImage,
 };

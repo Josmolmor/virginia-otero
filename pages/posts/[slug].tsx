@@ -1,5 +1,4 @@
 import { GetStaticPropsContext, GetStaticPropsResult } from 'next';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Content, predicate } from '@prismicio/client';
 import { asImageSrc, asText } from '@prismicio/helpers';

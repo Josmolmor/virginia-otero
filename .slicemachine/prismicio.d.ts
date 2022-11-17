@@ -6,6 +6,57 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = {
     [KeyType in keyof T]: T[KeyType];
 };
+/** Content for About documents */
+interface AboutDocumentData {
+    /**
+     * Intro field in *About*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: about.intro
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    intro: prismicT.RichTextField;
+    /**
+     * Cover image field in *About*
+     *
+     * - **Field Type**: Image
+     * - **Placeholder**: *None*
+     * - **API ID Path**: about.cover_image
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/image
+     *
+     */
+    cover_image: prismicT.ImageField<never>;
+    /**
+     * Slice Zone field in *About*
+     *
+     * - **Field Type**: Slice Zone
+     * - **Placeholder**: *None*
+     * - **API ID Path**: about.slices[]
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/slices
+     *
+     */
+    slices: prismicT.SliceZone<AboutDocumentDataSlicesSlice>;
+}
+/**
+ * Slice for *About → Slice Zone*
+ *
+ */
+type AboutDocumentDataSlicesSlice = TextImageSlice;
+/**
+ * About document from Prismic
+ *
+ * - **API ID**: `about`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AboutDocument<Lang extends string = string> = prismicT.PrismicDocumentWithUID<Simplify<AboutDocumentData>, "about", Lang>;
 /** Content for Post documents */
 interface PostDocumentData {
     /**
@@ -79,7 +130,7 @@ type PostDocumentDataSlicesSlice = TextSlice | ImageSlice;
  * @typeParam Lang - Language API ID of the document.
  */
 export type PostDocument<Lang extends string = string> = prismicT.PrismicDocumentWithUID<Simplify<PostDocumentData>, "post", Lang>;
-export type AllDocumentTypes = PostDocument;
+export type AllDocumentTypes = AboutDocument | PostDocument;
 /**
  * Primary content in External → Primary
  *
@@ -256,11 +307,60 @@ type TextSliceVariation = TextSliceDefault;
  *
  */
 export type TextSlice = prismicT.SharedSlice<"text", TextSliceVariation>;
+/**
+ * Primary content in TextImage → Primary
+ *
+ */
+interface TextImageSliceDefaultPrimary {
+    /**
+     * text field in *TextImage → Primary*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: text_image.primary.text
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    text: prismicT.RichTextField;
+    /**
+     * image field in *TextImage → Primary*
+     *
+     * - **Field Type**: Image
+     * - **Placeholder**: *None*
+     * - **API ID Path**: text_image.primary.image
+     * - **Documentation**: https://prismic.io/docs/core-concepts/image
+     *
+     */
+    image: prismicT.ImageField<never>;
+}
+/**
+ * Default variation for TextImage Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: `TextImage`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type TextImageSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<TextImageSliceDefaultPrimary>, never>;
+/**
+ * Slice variation for *TextImage*
+ *
+ */
+type TextImageSliceVariation = TextImageSliceDefault;
+/**
+ * TextImage Shared Slice
+ *
+ * - **API ID**: `text_image`
+ * - **Description**: `TextImage`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type TextImageSlice = prismicT.SharedSlice<"text_image", TextImageSliceVariation>;
 declare module "@prismicio/client" {
     interface CreateClient {
         (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
     }
     namespace Content {
-        export type { PostDocumentData, PostDocumentDataSlicesSlice, PostDocument, AllDocumentTypes, ExternalSliceDefaultPrimary, ExternalSliceDefault, ExternalSliceVariation, ExternalSlice, ImageSliceDefaultPrimary, ImageSliceDefault, ImageSliceVariation, ImageSlice, InstagramPostSliceDefaultPrimary, InstagramPostSliceDefault, InstagramPostSliceVariation, InstagramPostSlice, TextSliceDefaultPrimary, TextSliceDefault, TextSliceVariation, TextSlice };
+        export type { AboutDocumentData, AboutDocumentDataSlicesSlice, AboutDocument, PostDocumentData, PostDocumentDataSlicesSlice, PostDocument, AllDocumentTypes, ExternalSliceDefaultPrimary, ExternalSliceDefault, ExternalSliceVariation, ExternalSlice, ImageSliceDefaultPrimary, ImageSliceDefault, ImageSliceVariation, ImageSlice, InstagramPostSliceDefaultPrimary, InstagramPostSliceDefault, InstagramPostSliceVariation, InstagramPostSlice, TextSliceDefaultPrimary, TextSliceDefault, TextSliceVariation, TextSlice, TextImageSliceDefaultPrimary, TextImageSliceDefault, TextImageSliceVariation, TextImageSlice };
     }
 }

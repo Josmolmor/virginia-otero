@@ -6,9 +6,9 @@ import styled, { ThemeProvider } from 'styled-components';
 import { themeLight, GlobalStyles } from 'styles/themes';
 import { motion, useScroll } from 'framer-motion';
 import { useRouter } from 'next/router';
-import { usePanelbear } from '@panelbear/panelbear-nextjs';
 import { DefaultSeo } from 'next-seo';
 import SEO from 'config/next-seo';
+import Script from 'next/script';
 
 const ProgressBar = styled(motion.div)`
   position: fixed;
@@ -24,12 +24,24 @@ const ProgressBar = styled(motion.div)`
 function MyApp({ Component, pageProps }) {
   const { route } = useRouter();
   const { scrollYProgress } = useScroll();
-  usePanelbear('7vU98W2auhv');
 
   return (
     <ThemeProvider theme={themeLight}>
       <DefaultSeo {...SEO} />
       <GlobalStyles />
+      <Script
+        src='https://www.googletagmanager.com/gtag/js?id=G-T94YL3R0LE'
+        strategy='afterInteractive'
+      />
+      <Script id='google-analytics' strategy='afterInteractive'>
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          
+          gtag('config', 'G-T94YL3R0LE');
+        `}
+      </Script>
       <PrismicPreview repositoryName={repositoryName}>
         {route === '/posts/[slug]' ? (
           <ProgressBar style={{ scaleX: scrollYProgress }} />

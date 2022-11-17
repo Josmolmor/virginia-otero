@@ -6,12 +6,18 @@ import CoverImage from 'components/cover-image';
 import LeavesSmall from 'components/icons/leaves-small';
 import LeavesMedium from 'components/icons/leaves-medium';
 import { NextSeo } from 'next-seo';
+import { createClient } from 'lib/prismic';
+import { Content } from '@prismicio/client';
+import { PrismicRichText } from '@prismicio/react';
+import { SliceZone } from '@prismicio/react';
+import { components } from 'slices';
 
 type IndexProps = {
   preview: boolean;
+  about: Content.AboutDocument;
 };
 
-const Content = styled.div`
+const AboutContent = styled.div`
   position: relative;
 `;
 
@@ -37,63 +43,24 @@ const Hello = styled.h4`
   font-family: 'Great Sailor', sans-serif;
   letter-spacing: 1px;
   position: absolute;
-  left: 150px;
+  left: 50%;
   top: 50%;
-  transform: translateY(-50%);
-  font-size: 7rem;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
   text-shadow: 1px 1px #000;
+
+  @media (min-width: 768px) {
+    font-size: 7rem;
+    left: 150px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 `;
 
 const MainImage = styled(CoverImage)`
   > img {
     max-height: 30rem;
     object-fit: cover;
-  }
-`;
-
-const Image = styled(CoverImage)`
-  border-radius: 4px;
-`;
-
-const Row = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-
-  &:not(:last-child) {
-    margin-bottom: 48px;
-
-    @media (min-width: 768px) {
-      margin-bottom: 6rem;
-    }
-  }
-
-  &:last-child {
-    padding-bottom: 48px;
-
-    @media (min-width: 768px) {
-      padding-bottom: 6rem;
-    }
-  }
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    gap: 64px;
-  }
-
-  ${({ $reverse }) => {
-    return (
-      $reverse &&
-      css`
-        flex-direction: column-reverse;
-      `
-    );
-  }}
-
-  > * {
-    flex-basis: 50%;
   }
 `;
 
@@ -116,11 +83,6 @@ const Heading = styled.h4`
   }
 `;
 
-const Text = styled.p`
-  font-size: 1.125rem;
-  text-align: left;
-`;
-
 const commonLeavesCss = css`
   z-index: -1;
   position: absolute;
@@ -141,26 +103,8 @@ const LeavesMediumIcon = styled(LeavesMedium)`
   transform: rotate(65deg);
 `;
 
-export default function About({ preview }: IndexProps) {
-  const coverImage = {
-    url: 'https://images.prismic.io/virginia-otero/a3f49766-b762-40f7-af25-35ef8b95fa08_PXL_20221022_122517415.MP_50.jpg?auto=compress,format',
-    alt: '',
-    copyright: '',
-    dimensions: {
-      height: 100,
-      width: 200
-    }
-  };
-
-  const coverImageTwo = {
-    ...coverImage,
-    url: 'https://images.pexels.com/photos/189342/pexels-photo-189342.jpeg?cs=srgb&dl=pexels-ravi-kant-189342.jpg&fm=jpg'
-  };
-
-  const coverImageThree = {
-    ...coverImage,
-    url: 'https://images.pexels.com/photos/998593/pexels-photo-998593.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'
-  };
+export default function About({ preview, about }: IndexProps) {
+  const { cover_image: coverImage, intro, slices } = about.data;
 
   return (
     <Layout preview={preview}>
@@ -176,66 +120,40 @@ export default function About({ preview }: IndexProps) {
         }}
       />
       <Container>
-        <Content>
+        <AboutContent>
           <ImageContainer>
             <MainImage image={coverImage} priority='true' />
             <Hello>Hola!</Hello>
           </ImageContainer>
           <HeadingContainer>
-            <Heading>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. When an unknown printer took a gallery of type and
-              scrambled it to make a type specimen book. Lorem Ipsum is simply
-              dummy text of the printing and typesetting industry. When an
-              unknown printer took a gallery of type and scrambled it to make a
-              type specimen book.
-            </Heading>
+            <PrismicRichText
+              field={intro}
+              components={{
+                heading1: ({ children }) => <Heading>{children}</Heading>,
+                heading2: ({ children }) => <Heading>{children}</Heading>,
+                heading3: ({ children }) => <Heading>{children}</Heading>,
+                heading4: ({ children }) => <Heading>{children}</Heading>
+              }}
+            />
             <LeavesIconTop />
           </HeadingContainer>
-          <Row>
-            <Text>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. When an unknown printer took a gallery of type and
-              scrambled it to make a type specimen book. Lorem Ipsum is simply
-              dummy text of the printing and typesetting industry. When an
-              unknown printer took a gallery of type and scrambled it to make a
-              type specimen book.
-            </Text>
-            <Image image={coverImage} />
-          </Row>
-          <Row $reverse>
-            <Image image={coverImageTwo} />
-            <Text>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. When an unknown printer took a gallery of type and
-              scrambled it to make a type specimen book. Lorem Ipsum is simply
-              dummy text of the printing and typesetting industry. When an
-              unknown printer took a gallery of type and scrambled it to make a
-              type specimen book.
-            </Text>
-          </Row>
-          <Row>
-            <Text>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. When an unknown printer took a gallery of type and
-              scrambled it to make a type specimen book. Lorem Ipsum is simply
-              dummy text of the printing and typesetting industry. When an
-              unknown printer took a gallery of type and scrambled it to make a
-              type specimen book.
-            </Text>
-            <Image image={coverImageThree} />
-          </Row>
+          <SliceZone slices={slices} components={components} />
           <LeavesMediumIcon />
-        </Content>
+        </AboutContent>
       </Container>
     </Layout>
   );
 }
 
 export async function getStaticProps({
-  preview = false
+  preview = false,
+  previewData
 }: GetStaticPropsContext): Promise<GetStaticPropsResult<IndexProps>> {
+  const client = createClient({ previewData });
+
+  const aboutInfo = await client.getAllByType<Content.AboutDocument>('about');
+
   return {
-    props: { preview }
+    props: { preview, about: aboutInfo[0] }
   };
 }

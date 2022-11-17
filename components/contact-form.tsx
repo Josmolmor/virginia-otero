@@ -1,7 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import styled, { css } from 'styled-components';
-import { track } from '@panelbear/panelbear-js';
 import { CheckCircle } from 'react-feather';
 
 type Props = {
@@ -93,7 +92,6 @@ const ContactForm: FC<Props> = ({ children, className }) => {
 
   const trackSend = (e) => {
     e.preventDefault();
-    track(`ContactForm-${e.target.email.value.split('@')[0]}`);
     void handleSubmit(e);
   };
 

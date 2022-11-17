@@ -15,6 +15,14 @@
           "blocks": 1
         }
       }
+    },
+    "about": {
+      "intro": {
+        "config": {
+          "patternType": "PARAGRAPH",
+          "blocks": 1
+        }
+      }
     }
   },
   "slices": {
@@ -60,6 +68,18 @@
     "InstagramPost": {
       "default": {
         "primary": {}
+      }
+    },
+    "TextImage": {
+      "default": {
+        "primary": {
+          "text": {
+            "config": {
+              "patternType": "PARAGRAPH",
+              "blocks": 1
+            }
+          }
+        }
       }
     }
   }
