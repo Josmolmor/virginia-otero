@@ -66,7 +66,7 @@ const LinkEl = styled(Link)`
 
 const LinkLogo = styled(Link)`
   ${commonLinkStyles};
-  color: ${({ theme }) => theme.colors.logo}
+  color: ${({ theme }) => theme.colors.logo};
   padding: 10px 0;
   z-index: 851;
 
