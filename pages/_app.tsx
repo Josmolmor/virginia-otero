@@ -4,7 +4,7 @@ import 'styles/index.css';
 import 'remixicon/fonts/remixicon.css';
 import styled, { ThemeProvider } from 'styled-components';
 import { themeLight, GlobalStyles } from 'styles/themes';
-import { motion, useScroll } from 'framer-motion';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { DefaultSeo } from 'next-seo';
 import SEO from 'config/next-seo';
@@ -24,6 +24,7 @@ const ProgressBar = styled(motion.div)`
 function MyApp({ Component, pageProps }) {
   const { route } = useRouter();
   const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress);
 
   return (
     <ThemeProvider theme={themeLight}>
@@ -43,9 +44,7 @@ function MyApp({ Component, pageProps }) {
         `}
       </Script>
       <PrismicPreview repositoryName={repositoryName}>
-        {route === '/posts/[slug]' ? (
-          <ProgressBar style={{ scaleX: scrollYProgress }} />
-        ) : null}
+        {route === '/posts/[slug]' ? <ProgressBar style={{ scaleX }} /> : null}
         <Component {...pageProps} />
       </PrismicPreview>
     </ThemeProvider>

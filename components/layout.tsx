@@ -16,12 +16,14 @@ const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+  overflow: hidden;
 
   @media (min-width: 640px) {
     max-width: 640px;
   }
 
   @media (min-width: 768px) {
+    overflow: visible;
     max-width: 768px;
   }
 

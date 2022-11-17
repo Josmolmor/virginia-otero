@@ -67,11 +67,11 @@ const LinkEl = styled(Link)`
 const LinkLogo = styled(Link)`
   ${commonLinkStyles};
   color: ${({ theme }) => theme.colors.logo};
-  padding: 10px 0;
+  padding: 16px 0 0;
   z-index: 851;
 
   @media (min-width: 768px) {
-    padding: 10px 20px;
+    padding: 16px;
   }
 `;
 
@@ -111,13 +111,14 @@ const ContactButton = styled(Link)`
 `;
 
 const MainLogo = styled(Logo)`
-  width: 105.065px;
+  width: 125px;
+  margin-left: -8px;
   height: auto;
 
   ${({ $isHomeRoute }) =>
     $isHomeRoute &&
     css`
-      width: 261.05px;
+      width: 260px;
     `};
 `;
 
@@ -231,7 +232,7 @@ export default function Header() {
   return (
     <Nav>
       <LinkLogo href='/' onClick={closeIfMenuOpened}>
-        <MainLogo $isHomeRoute={isDesktop && isHomeRoute} />
+        <MainLogo $isHomeRoute={false && isDesktop && isHomeRoute} />
       </LinkLogo>
       {isDesktop ? (
         <Container>{menuItems()}</Container>
