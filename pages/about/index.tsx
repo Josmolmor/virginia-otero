@@ -40,8 +40,8 @@ const ImageContainer = styled.div`
 const Hello = styled.h4`
   display: block;
   color: white;
-  font-family: 'Great Sailor', sans-serif;
-  letter-spacing: 1px;
+  font-family: 'Diamond Bridge', 'Great Sailor', sans-serif;
+  letter-spacing: 1.5px;
   position: absolute;
   left: 50%;
   top: 50%;

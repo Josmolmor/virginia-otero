@@ -7,7 +7,7 @@ export default {
     url: 'https://www.virginiaotero.es/',
     siteName: 'Virginia Otero',
     title: 'Virginia Otero',
-    description: 'Psicología, crecimiento y desarrollo personal',
+    description: 'Crecimiento y desarrollo personal',
     images: [
       {
         url: 'https://images.pexels.com/photos/1207875/pexels-photo-1207875.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',

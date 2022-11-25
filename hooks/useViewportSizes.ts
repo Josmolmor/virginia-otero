@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useRef, useLayoutEffect } from 'react';
+import { useState, useMemo, useCallback, useRef, useEffect } from 'react';
 
 function getVpWidth() {
   return typeof window != 'undefined'
@@ -211,7 +211,7 @@ function useViewportSizes(input) {
     [debounceTimeoutRef, hasher, dimension, state]
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     resolverMap.set(listener, {
       options,
       prevHash: state.hash || undefined

@@ -180,9 +180,8 @@ const LeftSide = styled.div`
 `;
 
 const ScriptText = styled.p`
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Diamond Bridge', cursive;
   font-size: 3.5rem;
-  font-weight: 700;
   line-height: 1;
 
   @media (min-width: 768px) {
@@ -264,12 +263,14 @@ const H2 = styled.h2`
   }
 
   color: white;
-  font-family: 'Great Sailor', sans-serif;
   font-size: 2.5rem;
   margin-bottom: 2rem;
   line-height: 1.2;
   font-weight: 500;
   text-align: center;
+  font-family: 'Diamond Bridge', 'Great Sailor', sans-serif;
+  text-shadow: 0px 0px white;
+  letter-spacing: 1.5px;
 `;
 
 const ServicesText = styled.h4`
@@ -419,7 +420,8 @@ const Words = styled.p`
 
 const Emphasis = styled.span`
   font-size: 2rem;
-  font-weight: 600;
+  font-family: 'Diamond Bridge', 'Great Sailor', sans-serif;
+  text-shadow: 0px 0px white;
   letter-spacing: 5px;
 
   @media (min-width: 768px) {
@@ -522,7 +524,7 @@ export default function Index({ preview }: IndexProps) {
             }}
           >
             <ScriptText $visible={opacity > 0}>
-              Psicología, Crecimiento y Desarrollo Personal
+              Crecimiento y Desarrollo Personal
             </ScriptText>
             <H4>
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -565,7 +567,7 @@ export default function Index({ preview }: IndexProps) {
           <TextSide>
             <TextContent>
               <Words>¿Quieres aprender</Words>
-              <Emphasis>Tips de psicologia</Emphasis>
+              <Emphasis>tips de psicología</Emphasis>
               <Words>en 3 minutos?</Words>
             </TextContent>
             <ThirdButton href='/posts'>Ir al blog</ThirdButton>
