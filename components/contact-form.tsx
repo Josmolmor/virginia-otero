@@ -1,7 +1,8 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, ReactNode, useEffect, useState } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import styled, { css } from 'styled-components';
 import { CheckCircle } from 'react-feather';
+import { useSession } from 'next-auth/react';
 
 type Props = {
   children: ReactNode;
@@ -108,10 +109,30 @@ const ContactForm: FC<Props> = ({ children, className }) => {
     );
   }
 
+  const { data } = useSession();
+  const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    if (data) {
+      const { user } = data;
+      const { email } = user;
+      if (email) {
+        setEmail(email);
+      }
+    }
+  }, [data]);
+
   return (
     <Form onSubmit={trackSend} className={className}>
       <Label htmlFor='email'>Correo electrónico</Label>
-      <Input required id='email' type='email' name='email' />
+      <Input
+        required
+        id='email'
+        type='email'
+        name='email'
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
       <ValidationError prefix='Email' field='email' errors={state.errors} />
       <Label htmlFor='message'>Mensaje</Label>
       <TextArea required id='message' name='message' />

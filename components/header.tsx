@@ -1,12 +1,14 @@
 import Link from 'next/link';
 import styled, { css } from 'styled-components';
-import { Instagram, Menu, X } from 'react-feather';
+import { Instagram, LogIn, LogOut, Menu, X } from 'react-feather';
 import Logo from './icons/logo/wordmark';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 const { div } = motion;
 import useMediaQuery from 'hooks/useMediaQuery';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import popupCenter from '../utils/popupCenter';
 
 const Nav = styled.nav`
   display: flex;
@@ -31,6 +33,7 @@ const Container = styled.div`
 `;
 
 const Links = styled.ul`
+  align-items: center;
   display: flex;
   list-style: none;
   padding: 0;
@@ -86,7 +89,7 @@ const Li = styled.li`
   align-items: center;
 
   @media (min-width: 768px) {
-    align-self: flex-start;
+    // align-self: flex-start;
   }
 `;
 
@@ -142,6 +145,16 @@ const ContainerMobile = styled(div)`
   background: rgba(0, 0, 0, 0.9);
 `;
 
+const AuthButton = styled.button`
+  ${commonLinkStyles};
+  background: transparent;
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+  padding: 12px 18px 12px 22px;
+`;
+
 const ContentMobile = styled.div`
   padding-top: 103px;
   margin-right: auto;
@@ -154,7 +167,8 @@ const ContentMobile = styled.div`
   }
 
   ${LinkEl},
-  ${Anchor} {
+  ${Anchor},
+  ${AuthButton} {
     color: #fff;
     line-height: 40px;
     font-size: 22px;
@@ -172,6 +186,17 @@ const IconContainer = styled.div`
   margin-top: 32px;
   cursor: pointer;
   z-index: 851;
+`;
+
+const Avatar = styled.img`
+  height: 40px;
+  width: 40px;
+  background-color: ${({ theme }) => theme.colors.brick};
+  border-radius: 50%;
+  border: 2px inset ${({ theme }) => theme.colors.brick};
+  @media (min-width: 768px) {
+    margin-left: 12px;
+  }
 `;
 
 export default function Header() {
@@ -197,6 +222,18 @@ export default function Header() {
       setMobileMenuOpened(false);
     }
   };
+
+  const { data } = useSession();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    if (data) {
+      const { user } = data;
+      if (user) {
+        setUser(user);
+      }
+    }
+  }, [data]);
 
   const menuItems = () => {
     return (
@@ -225,6 +262,39 @@ export default function Header() {
             Contacto
           </ContactButton>
         </Li>
+        {data ? (
+          <Li>
+            <Avatar
+              src={user?.image}
+              referrerpolicy='no-referrer'
+              title={`Sesión iniciada como ${user?.email}`}
+            />
+            <AuthButton disabled={!data} onClick={() => signOut()}>
+              Salir
+              <LogOut
+                style={{
+                  height: 20,
+                  width: 20
+                }}
+              />
+            </AuthButton>
+          </Li>
+        ) : (
+          <Li>
+            <AuthButton
+              disabled={!!data}
+              onClick={() => popupCenter('/google-sign-in', 'Sample Sign In')}
+            >
+              Entrar
+              <LogIn
+                style={{
+                  height: 20,
+                  width: 20
+                }}
+              />
+            </AuthButton>
+          </Li>
+        )}
       </Links>
     );
   };

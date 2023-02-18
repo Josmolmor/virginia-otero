@@ -11,6 +11,7 @@ type AnchorProps = {
 };
 
 const A = styled.a`
+  font-weight: 500;
   transition-property: color;
   transition: 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
 
@@ -21,6 +22,7 @@ const A = styled.a`
 `;
 
 const Container = styled(Link)`
+  font-weight: 500;
   transition-property: color;
   transition: 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
 

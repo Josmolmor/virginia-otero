@@ -17,7 +17,6 @@ import {
 } from 'react-feather';
 import LeavesSmall from 'components/icons/leaves-small';
 import { useEffect, useState } from 'react';
-import Branch from 'components/icons/branch';
 import { NextSeo } from 'next-seo';
 import { useScroll } from 'framer-motion';
 import useMediaQuery from 'hooks/useMediaQuery';
@@ -476,7 +475,7 @@ export default function Index({ preview }: IndexProps) {
       if (latest >= 75) {
         return setOpacity(1);
       }
-      return setOpacity(0 + latest / 75);
+      return setOpacity(latest / 75);
     });
   }, []);
 

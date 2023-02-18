@@ -16,13 +16,17 @@
     "@prismicio/react": "^2.5.0",
     "@prismicio/slice-simulator-react": "^0.2.2",
     "@prismicio/types": "^0.2.3",
+    "date-fns": "^2.29.3",
+    "firebase": "^9.17.1",
     "framer-motion": "^7.6.6",
     "next": "latest",
+    "next-auth": "^4.19.2",
     "next-seo": "^5.14.1",
     "prismic-ts-codegen": "^0.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",
+    "react-toastify": "^9.1.1",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {

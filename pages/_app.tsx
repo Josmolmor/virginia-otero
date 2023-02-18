@@ -9,6 +9,9 @@ import { useRouter } from 'next/router';
 import { DefaultSeo } from 'next-seo';
 import SEO from 'config/next-seo';
 import Script from 'next/script';
+import { SessionProvider } from 'next-auth/react';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, Slide } from 'react-toastify';
 
 const ProgressBar = styled(motion.div)`
   position: fixed;
@@ -27,27 +30,44 @@ function MyApp({ Component, pageProps }) {
   const scaleX = useSpring(scrollYProgress);
 
   return (
-    <ThemeProvider theme={themeLight}>
-      <DefaultSeo {...SEO} />
-      <GlobalStyles />
-      <Script
-        src='https://www.googletagmanager.com/gtag/js?id=G-T94YL3R0LE'
-        strategy='afterInteractive'
+    <SessionProvider session={pageProps.session}>
+      <ToastContainer
+        position='bottom-center'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme='dark'
+        transition={Slide}
       />
-      <Script id='google-analytics' strategy='afterInteractive'>
-        {`
+      <ThemeProvider theme={themeLight}>
+        <DefaultSeo {...SEO} />
+        <GlobalStyles />
+        <Script
+          src='https://www.googletagmanager.com/gtag/js?id=G-T94YL3R0LE'
+          strategy='afterInteractive'
+        />
+        <Script id='google-analytics' strategy='afterInteractive'>
+          {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           
           gtag('config', 'G-T94YL3R0LE');
         `}
-      </Script>
-      <PrismicPreview repositoryName={repositoryName}>
-        {route === '/posts/[slug]' ? <ProgressBar style={{ scaleX }} /> : null}
-        <Component {...pageProps} />
-      </PrismicPreview>
-    </ThemeProvider>
+        </Script>
+        <PrismicPreview repositoryName={repositoryName}>
+          {route === '/posts/[slug]' ? (
+            <ProgressBar style={{ scaleX }} />
+          ) : null}
+          <Component {...pageProps} />
+        </PrismicPreview>
+      </ThemeProvider>
+    </SessionProvider>
   );
 }
 

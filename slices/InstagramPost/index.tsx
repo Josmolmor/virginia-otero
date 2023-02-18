@@ -10,7 +10,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   flex: 1;
-  margin: auto;
+  margin: 24px auto;
   height: 378px;
   width: 280px;
 
