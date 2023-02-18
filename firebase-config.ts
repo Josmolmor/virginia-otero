@@ -57,14 +57,14 @@ const readComments = async (slug: string): Promise<DocumentDataComment[]> => {
   querySnapshot.forEach((doc) => {
     docs.push(doc.data());
   });
-  console.log('comments =>', docs);
+  // console.log('comments =>', docs);
   return docs as DocumentDataComment[];
 };
 
 const writeComment = async (payload: DocumentDataComment) => {
   try {
-    const docRef = await addDoc(commentsCollection, payload);
-    console.log('Document written with ID: ', docRef.id);
+    await addDoc(commentsCollection, payload);
+    // console.log('Document written with ID: ', docRef.id);
   } catch (e) {
     console.error('Error adding document: ', e);
   }
@@ -84,31 +84,37 @@ const deleteComment = async (payload: {
       where('slug', '==', slug)
     );
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      deleteDoc(doc.ref);
-    });
+    const doc = querySnapshot.docs[0];
+    await deleteDoc(doc.ref);
   } catch (e) {
     console.error('Error deleting document: ', e);
   }
 };
 
 const likeComment = async (payload: {
-  email: string;
+  docEmail: string;
+  userLikeEmail: string;
   content: string;
   slug: string;
+  likes: string[];
 }) => {
-  const { email, content, slug } = payload;
+  const { docEmail, userLikeEmail, content, slug, likes = [] } = payload;
   try {
     const q = query(
       commentsCollection,
-      where('email', '==', email),
+      where('email', '==', docEmail),
       where('content', '==', content),
       where('slug', '==', slug)
     );
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      setDoc(doc.ref, { likes: [email] }, { merge: true });
-    });
+    const doc = querySnapshot.docs[0];
+
+    const hasUserLike = likes?.includes(userLikeEmail);
+    const finalLikes = hasUserLike
+      ? likes.filter((includedEmail) => includedEmail !== userLikeEmail)
+      : [...likes, userLikeEmail];
+
+    await setDoc(doc.ref, { likes: finalLikes }, { merge: true });
   } catch (e) {
     console.error('Error liking document: ', e);
   }

@@ -50,6 +50,10 @@ const Excerpt = styled.p`
   display: flex;
   flex-direction: column;
   gap: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 
   @media (min-width: 768px) {
     font-size: 1.125rem;

@@ -55,8 +55,9 @@ const Content = styled.p`
 `;
 
 const Interactions = styled.div`
+  align-items: flex-start;
   display: flex;
-  gap: 8px;
+  gap: 16px;
 `;
 
 const Likes = styled.div`
@@ -66,9 +67,14 @@ const Likes = styled.div`
   gap: 4px;
 `;
 
-const HeartIcon = styled(Heart)`
+const InteractionsButton = styled.button`
   cursor: pointer;
+  background: transparent;
+  padding: 0;
+  width: 20px;
+`;
 
+const HeartIcon = styled(Heart)`
   ${({ $liked }) =>
     $liked &&
     css`
@@ -79,9 +85,7 @@ const HeartIcon = styled(Heart)`
 
 const NumOfLikes = styled.span``;
 
-const TrashIcon = styled(Trash)`
-  cursor: pointer;
-`;
+const TrashIcon = styled(Trash)``;
 
 const CommentComponent: FC<Props> = ({
   avatarSrc,
@@ -107,10 +111,19 @@ const CommentComponent: FC<Props> = ({
       </UserInfo>
       <Interactions>
         <Likes>
-          <HeartIcon onClick={onLiked} $liked={liked} />
+          <InteractionsButton
+            title='Dar "me gusta" al comentario'
+            onClick={onLiked}
+          >
+            <HeartIcon $liked={liked} />
+          </InteractionsButton>
           <NumOfLikes>{numOfLikes > 0 ? numOfLikes : null}</NumOfLikes>
         </Likes>
-        {canBeDeleted ? <TrashIcon onClick={onDeleted} /> : null}
+        {canBeDeleted ? (
+          <InteractionsButton title='Borrar comentario' onClick={onDeleted}>
+            <TrashIcon />
+          </InteractionsButton>
+        ) : null}
       </Interactions>
     </Container>
   );

@@ -2,6 +2,7 @@ import { GetStaticPropsContext, GetStaticPropsResult } from 'next';
 import { useRouter } from 'next/router';
 import { Content, predicate } from '@prismicio/client';
 import { asImageSrc, asText } from '@prismicio/helpers';
+import esLocale from 'date-fns/locale/es';
 
 import { createClient } from 'lib/prismic';
 
@@ -82,7 +83,7 @@ const CommentsSection = styled.div`
 `;
 
 const TextAreaComment = styled(CommentTextArea)`
-  margin: 32px auto 0;
+  margin: 36px auto 0;
 `;
 
 export default function Post({
@@ -97,7 +98,8 @@ export default function Post({
 
   const { asPath, isFallback } = useRouter();
   const typedComments: DocumentDataComment[] = JSON.parse(comments);
-  const [parsedComments, setParsedComments] = useState(typedComments);
+  const [parsedComments, setParsedComments] =
+    useState<DocumentDataComment[]>(typedComments);
   const [updates, setUpdates] = useState(0);
 
   useEffect(() => {
@@ -112,7 +114,7 @@ export default function Post({
     return () => {
       // this now gets called when the component unmounts
     };
-  }, [updates]);
+  }, [asPath, updates]);
 
   const onComment = async (content) => {
     const payload: DocumentDataComment = {
@@ -125,17 +127,18 @@ export default function Post({
       slug
     };
     await writeComment(payload);
-    notify('Comentario añadido correctamente');
+    notify('Comentario añadido');
     setUpdates(updates + 1);
   };
 
   const onCommentLiked = async (payload: {
-    email: string;
+    docEmail: string;
+    userLikeEmail: string;
     content: string;
     slug: string;
+    likes: string[];
   }) => {
     await likeComment(payload);
-    notify('Comentario liked correctamente');
     setUpdates(updates + 1);
   };
 
@@ -145,7 +148,7 @@ export default function Post({
     slug: string;
   }) => {
     await deleteComment(payload);
-    notify('Comentario eliminado correctamente');
+    notify('Comentario eliminado');
     setUpdates(updates + 1);
   };
 
@@ -195,7 +198,8 @@ export default function Post({
                       timeInfo.seconds * 1000 + timeInfo.nanoseconds / 1000000
                     );
                     const timeAgo = formatDistance(parsedDate, new Date(), {
-                      addSuffix: true
+                      addSuffix: true,
+                      locale: esLocale
                     });
                     return (
                       <AnimatePresence key={content}>
@@ -208,7 +212,13 @@ export default function Post({
                           canBeDeleted={data?.user.email === email}
                           numOfLikes={likes?.length}
                           onLiked={() =>
-                            onCommentLiked({ email, content, slug })
+                            onCommentLiked({
+                              docEmail: email,
+                              userLikeEmail: data?.user.email,
+                              content,
+                              slug,
+                              likes
+                            })
                           }
                           onDeleted={() =>
                             onCommentDeleted({ email, content, slug })

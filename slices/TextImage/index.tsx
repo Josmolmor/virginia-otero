@@ -80,7 +80,7 @@ const Image = styled(CoverImage)`
 `;
 
 const TextImage = ({ slice, index }) => {
-  console.log(slice, index, index % 2);
+  // console.log(slice, index, index % 2);
 
   const { primary } = slice;
   const { image, text } = primary;
