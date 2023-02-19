@@ -23,7 +23,8 @@
           "blocks": 1
         }
       }
-    }
+    },
+    "review": {}
   },
   "slices": {
     "Text": {

@@ -119,7 +119,7 @@ interface PostDocumentData {
  * Slice for *Post → Slice Zone*
  *
  */
-type PostDocumentDataSlicesSlice = TextSlice | ImageSlice;
+type PostDocumentDataSlicesSlice = TextSlice | ImageSlice | InstagramPostSlice | ExternalSlice | TextImageSlice;
 /**
  * Post document from Prismic
  *
@@ -130,7 +130,53 @@ type PostDocumentDataSlicesSlice = TextSlice | ImageSlice;
  * @typeParam Lang - Language API ID of the document.
  */
 export type PostDocument<Lang extends string = string> = prismicT.PrismicDocumentWithUID<Simplify<PostDocumentData>, "post", Lang>;
-export type AllDocumentTypes = AboutDocument | PostDocument;
+/** Content for Review documents */
+interface ReviewDocumentData {
+    /**
+     * title field in *Review*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: review.title
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    title: prismicT.KeyTextField;
+    /**
+     * name field in *Review*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: review.name
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    name: prismicT.KeyTextField;
+    /**
+     * message field in *Review*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: review.message
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    message: prismicT.KeyTextField;
+}
+/**
+ * Review document from Prismic
+ *
+ * - **API ID**: `review`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ReviewDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<ReviewDocumentData>, "review", Lang>;
+export type AllDocumentTypes = AboutDocument | PostDocument | ReviewDocument;
 /**
  * Primary content in External → Primary
  *
@@ -361,6 +407,6 @@ declare module "@prismicio/client" {
         (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
     }
     namespace Content {
-        export type { AboutDocumentData, AboutDocumentDataSlicesSlice, AboutDocument, PostDocumentData, PostDocumentDataSlicesSlice, PostDocument, AllDocumentTypes, ExternalSliceDefaultPrimary, ExternalSliceDefault, ExternalSliceVariation, ExternalSlice, ImageSliceDefaultPrimary, ImageSliceDefault, ImageSliceVariation, ImageSlice, InstagramPostSliceDefaultPrimary, InstagramPostSliceDefault, InstagramPostSliceVariation, InstagramPostSlice, TextSliceDefaultPrimary, TextSliceDefault, TextSliceVariation, TextSlice, TextImageSliceDefaultPrimary, TextImageSliceDefault, TextImageSliceVariation, TextImageSlice };
+        export type { AboutDocumentData, AboutDocumentDataSlicesSlice, AboutDocument, PostDocumentData, PostDocumentDataSlicesSlice, PostDocument, ReviewDocumentData, ReviewDocument, AllDocumentTypes, ExternalSliceDefaultPrimary, ExternalSliceDefault, ExternalSliceVariation, ExternalSlice, ImageSliceDefaultPrimary, ImageSliceDefault, ImageSliceVariation, ImageSlice, InstagramPostSliceDefaultPrimary, InstagramPostSliceDefault, InstagramPostSliceVariation, InstagramPostSlice, TextSliceDefaultPrimary, TextSliceDefault, TextSliceVariation, TextSlice, TextImageSliceDefaultPrimary, TextImageSliceDefault, TextImageSliceVariation, TextImageSlice };
     }
 }

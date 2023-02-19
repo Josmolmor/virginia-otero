@@ -1,0 +1,31 @@
+{
+  "id": "review",
+  "label": "Review",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "title": {
+        "type": "Text",
+        "config": {
+          "label": "title",
+          "placeholder": ""
+        }
+      },
+      "name": {
+        "type": "Text",
+        "config": {
+          "label": "name",
+          "placeholder": ""
+        }
+      },
+      "message": {
+        "type": "Text",
+        "config": {
+          "label": "message",
+          "placeholder": ""
+        }
+      }
+    }
+  }
+}

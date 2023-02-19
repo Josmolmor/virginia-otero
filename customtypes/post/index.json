@@ -53,6 +53,15 @@
             },
             "image": {
               "type": "SharedSlice"
+            },
+            "instagram_post": {
+              "type": "SharedSlice"
+            },
+            "external": {
+              "type": "SharedSlice"
+            },
+            "text_image": {
+              "type": "SharedSlice"
             }
           }
         }
