@@ -20,7 +20,7 @@ import { useEffect, useState } from 'react';
 import { NextSeo } from 'next-seo';
 import { useScroll } from 'framer-motion';
 import useMediaQuery from 'hooks/useMediaQuery';
-import useViewportSizes from 'hooks/useViewportSizes';
+import useViewportSizes from 'use-viewport-sizes';
 
 const ServicesList = [
   {
