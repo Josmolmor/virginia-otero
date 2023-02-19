@@ -30,7 +30,7 @@ import CommentComponent from 'components/comments/comment';
 import { formatDistance } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 type PostProps = {
   preview: boolean;
@@ -97,7 +97,9 @@ export default function Post({
   const { data, status } = useSession();
 
   const { asPath, isFallback } = useRouter();
-  const typedComments: DocumentDataComment[] = JSON.parse(comments);
+  const typedComments: DocumentDataComment[] = comments
+    ? JSON.parse(comments)
+    : [];
   const [parsedComments, setParsedComments] =
     useState<DocumentDataComment[]>(typedComments);
   const [updates, setUpdates] = useState(0);
