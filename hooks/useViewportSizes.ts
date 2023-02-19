@@ -123,13 +123,13 @@ function onResize() {
 
 function getInitialState(options, vpW, vpH) {
   let returnValue = {};
-  if (options.hasher) {
+  if (options?.hasher) {
     returnValue = options.hasher({ vpW, vpH });
   } else {
     returnValue = { vpW, vpH };
   }
 
-  return !options.hasher
+  return !options?.hasher
     ? { vpW, vpH }
     : hasher && hasher({ vpW: vpWidth, vpH: vpHeight });
 }
