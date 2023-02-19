@@ -123,7 +123,7 @@ function onResize() {
 
 function getInitialState(options, vpW, vpH) {
   let returnValue = {};
-  if (options?.hasher) {
+  if (options.hasher) {
     returnValue = options.hasher({ vpW, vpH });
   } else {
     returnValue = { vpW, vpH };
@@ -131,7 +131,7 @@ function getInitialState(options, vpW, vpH) {
 
   return !options?.hasher
     ? { vpW, vpH }
-    : hasher && hasher({ vpW: vpWidth, vpH: vpHeight });
+    : options?.hasher && options.hasher({ vpW: vpWidth, vpH: vpHeight });
 }
 
 function useViewportSizes(input) {
