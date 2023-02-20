@@ -16,6 +16,7 @@ type HeroPostProps = {
 };
 
 const HeroImage = styled(CoverImage)`
+  max-height: 25rem;
   margin-bottom: 2rem;
 
   @media (min-width: 768px) {

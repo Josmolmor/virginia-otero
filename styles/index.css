@@ -1,5 +1,5 @@
 @import 'reset.css';
-@import 'fonts.css';
+@import 'public/fonts/fonts.css';
 
 html {
     font-family: 'Mona Sans', system-ui, sans-serif;

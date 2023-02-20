@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'Mona Sans';
+    src: url('Mona-Sans.woff2') format('woff2 supports variations'),
+        url('Mona-Sans.woff2') format('woff2-variations');
+    font-weight: 200 900;
+    font-stretch: 75% 125%;
+}
+
+@font-face {
+    font-family: 'Great Sailor';
+    src: url('Great Sailor.otf') format('otf'),
+    url('Great Sailor.otf') format('otf');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Diamond Bridge';
+    src: url('DiamondBridge-Regular.eot');
+    src: local('DiamondBridge-Regular'),
+    url('DiamondBridge-Regular.eot?#iefix') format('embedded-opentype'),
+    url('DiamondBridge-Regular.woff2') format('woff2'),
+    url('DiamondBridge-Regular.woff') format('woff'),
+    url('DiamondBridge-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
