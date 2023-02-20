@@ -42,6 +42,11 @@ const Maintenance = styled.div`
   font-weight: 500;
   height: 100vh;
   width: 100vw;
+
+  h1 {
+    text-align: center;
+    max-width: 260px;
+  }
 `;
 
 function MyApp({ Component, pageProps }) {

@@ -54,6 +54,13 @@ const DateContainer = styled.div`
   }
 `;
 
+const Image = styled(CoverImage)`
+  img {
+    max-height: 40rem;
+    object-fit: cover;
+  }
+`;
+
 export default function Header({ title, coverImage, date }: PostHeaderProps) {
   return (
     <>
@@ -67,7 +74,7 @@ export default function Header({ title, coverImage, date }: PostHeaderProps) {
         </DateContainer>
       </TitleContainer>
       <ImageContainer>
-        <CoverImage title={asText(title)} image={coverImage} />
+        <Image title={asText(title)} image={coverImage} />
       </ImageContainer>
     </>
   );

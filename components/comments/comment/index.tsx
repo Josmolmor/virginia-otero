@@ -21,10 +21,6 @@ const Container = styled.div`
   display: flex;
   gap: 16px;
   width: 100%;
-
-  @media (min-width: 768px) {
-    align-items: center;
-  }
 `;
 
 const Avatar = styled.img`
@@ -44,11 +40,6 @@ const Data = styled.div`
   align-items: flex-start;
   gap: 0;
   display: flex;
-
-  @media (min-width: 768px) {
-    align-items: center;
-    gap: 8px;
-  }
 `;
 
 const Name = styled.span`
