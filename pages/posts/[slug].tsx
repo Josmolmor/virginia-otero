@@ -210,6 +210,7 @@ export default function Post({
                           name={name}
                           date={timeAgo}
                           content={content}
+                          loggedIn={!!data}
                           liked={likes?.includes(data?.user.email)}
                           canBeDeleted={data?.user.email === email}
                           numOfLikes={likes?.length}

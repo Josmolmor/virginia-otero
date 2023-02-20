@@ -12,6 +12,8 @@ import Script from 'next/script';
 import { SessionProvider } from 'next-auth/react';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, Slide } from 'react-toastify';
+import Socials from '../components/socials';
+import Logo from '../components/icons/logo/wordmark';
 
 const ProgressBar = styled(motion.div)`
   position: fixed;
@@ -20,14 +22,48 @@ const ProgressBar = styled(motion.div)`
   right: 0;
   height: 10px;
   background: ${({ theme }) => theme.colors.brick};
-  transform-origin: 0%;
+  transform-origin: 0;
   z-index: 1;
+`;
+
+const Maintenance = styled.div`
+  background: ${({ theme }) => theme.colors.brick};
+  color: white;
+  padding: 32px;
+  border-radius: 8px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 500;
+  height: 100vh;
+  width: 100vw;
 `;
 
 function MyApp({ Component, pageProps }) {
   const { route } = useRouter();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress);
+
+  const renderContent = () => {
+    if (process.env.NEXT_PUBLIC_MAINTENANCE_MODE === 'true') {
+      return (
+        <Maintenance>
+          <Logo
+            style={{ height: 'auto', width: '140px', marginBottom: '24px' }}
+          />
+          <h1>La web está en mantenimiento, volvemos pronto</h1>
+          <Socials />
+        </Maintenance>
+      );
+    } else {
+      return <Component {...pageProps} />;
+    }
+  };
 
   return (
     <SessionProvider session={pageProps.session}>
@@ -64,7 +100,7 @@ function MyApp({ Component, pageProps }) {
           {route === '/posts/[slug]' ? (
             <ProgressBar style={{ scaleX }} />
           ) : null}
-          <Component {...pageProps} />
+          {renderContent()}
         </PrismicPreview>
       </ThemeProvider>
     </SessionProvider>

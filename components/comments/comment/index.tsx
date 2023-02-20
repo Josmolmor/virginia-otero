@@ -10,6 +10,7 @@ type Props = {
   canBeDeleted?: boolean;
   liked?: boolean;
   numOfLikes?: number;
+  loggedIn?: boolean;
   className?: string;
   onLiked: () => void;
   onDeleted: () => void;
@@ -97,6 +98,7 @@ const CommentComponent: FC<Props> = ({
   numOfLikes,
   onLiked,
   onDeleted,
+  loggedIn,
   className
 }) => {
   return (
@@ -114,6 +116,7 @@ const CommentComponent: FC<Props> = ({
           <InteractionsButton
             title='Dar "me gusta" al comentario'
             onClick={onLiked}
+            disabled={!loggedIn}
           >
             <HeartIcon $liked={liked} />
           </InteractionsButton>
