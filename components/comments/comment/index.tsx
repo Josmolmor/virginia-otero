@@ -17,10 +17,14 @@ type Props = {
 };
 
 const Container = styled.div`
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   gap: 16px;
   width: 100%;
+
+  @media (min-width: 768px) {
+    align-items: center;
+  }
 `;
 
 const Avatar = styled.img`
@@ -36,9 +40,15 @@ const UserInfo = styled.div`
 `;
 
 const Data = styled.div`
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
   display: flex;
-  gap: 8px;
+
+  @media (min-width: 768px) {
+    align-items: center;
+    gap: 8px;
+  }
 `;
 
 const Name = styled.span`
@@ -52,7 +62,11 @@ const Time = styled.span`
 `;
 
 const Content = styled.p`
-  margin-top: 4px;
+  margin-top: 6px;
+
+  @media (min-width: 768px) {
+    margin-top: 4px;
+  }
 `;
 
 const Interactions = styled.div`
